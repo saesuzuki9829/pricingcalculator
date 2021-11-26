@@ -65,42 +65,43 @@ const ProfileScreen = ( {location, history} ) => {
 
     return <Row>
         <Col md={3}>
-        <h2>User Profile</h2>
+        <h2>登録情報</h2>
             {message && <Message variant='danger'>{message}</Message>}
-            {profileUpdated && <Message varient="success"> Profile Updated </Message>}
+            {profileUpdated && <Message varient="success"> 登録情報更新 </Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
                 <Form.Group countrolId='name'>
                     <Form.Label>
-                        Name
+                        お名前
                     </Form.Label>
-                    <Form.Control type ='name' placeholder='Enter name' value={name} onChange={(e)=> setName(e.target.value)}></Form.Control>
+                    <Form.Control type ='name' placeholder='お名前' value={name} onChange={(e)=> setName(e.target.value)}></Form.Control>
+                    
                 </Form.Group>
 
                 <Form.Group countrolId='email'>
                     <Form.Label>
-                        Email Address
+                        Email
                     </Form.Label>
-                    <Form.Control type ='email' placeholder='Enter email' value={email} onChange={(e)=> setEmail(e.target.value)}></Form.Control>
+                    <Form.Control type ='email' placeholder='Email' value={email} onChange={(e)=> setEmail(e.target.value)}></Form.Control>
                 </Form.Group>
 
                 <Form.Group countrolId='password'>
                     <Form.Label>
-                        Password
+                        パスワード
                     </Form.Label>
-                    <Form.Control type ='password' placeholder='Enter password' value={password} onChange={(e)=> setPassword(e.target.value)}></Form.Control>
+                    <Form.Control type ='password' placeholder='パスワード' value={password} onChange={(e)=> setPassword(e.target.value)}></Form.Control>
                 </Form.Group>
 
                 <Form.Group countrolId='confirmPassword'>
                     <Form.Label>
-                        CondirmPassword
+                        パスワード確認
                     </Form.Label>
-                    <Form.Control type ='password' placeholder='Confirm password' value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)}></Form.Control>
+                    <Form.Control type ='password' placeholder='パスワード' value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)}></Form.Control>
                 </Form.Group>
                 <div className='mt-3'> 
                 <Button type='submit' varient ='primary'>
-                    Update
+                    更新
                 </Button>
                 </div>
             </Form>
@@ -108,7 +109,7 @@ const ProfileScreen = ( {location, history} ) => {
         </Col>
 
         <Col md={9}>
-            <h2>My Orders</h2>
+            <h2>概算お見積もり一覧</h2>
         </Col>
     </Row>
 }

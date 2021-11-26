@@ -25,7 +25,7 @@ const ProductScreen = ({ history, match }) => {
 return (
     <>
     <Link className ='btn btn-light my-3' to='/'>
-        Go Back
+        戻る
     </Link>
     {loading ? <Loader /> : error ? <Message variant ='danger'> {error} </Message>:(
         <Row>
@@ -43,8 +43,8 @@ return (
                             text={`${product.numReviews} reviews`}
                         />
                     </ListGroup.Item>
-                    <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                    <ListGroup.Item>Description: {product.description}</ListGroup.Item>
+                    <ListGroup.Item>価格: {product.price} 円 (税込)</ListGroup.Item>
+                    <ListGroup.Item>詳細: {product.description}</ListGroup.Item>
                 </ListGroup>
             </Col>
             <Col md ={3}>
@@ -52,16 +52,16 @@ return (
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
                                 <Row>
-                                    <Col>Price:</Col>
+                                    <Col>価格:</Col>
                                     <Col>
-                                    <strong>${product.price}</strong>
+                                    <strong>{product.price} 円 (税込)</strong>
                                     </Col>
                                 </Row>
                         </ListGroup.Item>
 
                         <ListGroup.Item>
                                 <Row>
-                                    <Col>Status:</Col>
+                                    <Col>在庫:</Col>
                                     <Col>
                                     {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                                     </Col>
@@ -71,7 +71,7 @@ return (
                     {product.countInStock > 0 && (
                         <ListGroup.Item>
                             <Row>
-                                <Col>Qty</Col>
+                                <Col>数量</Col>
                                 <Col>
                                     <Form.Control 
                                         as ='select' 
@@ -81,7 +81,7 @@ return (
                                         [...Array(product.countInStock).keys()].map((x)=> (
                                             <option key={x + 1} value = {x+1}>
                                                 {x+1}</option>
-                                        ))}
+                                        ))} 
                                     </Form.Control>
                                 </Col>
                             </Row>
@@ -96,8 +96,7 @@ return (
                             type='button'
                             disabled ={product.countInStock === 0}
                             >
-                            Add To Cart
-                            </Button>
+                                追加                            </Button>
                             </div>
                         </ListGroup.Item>
 

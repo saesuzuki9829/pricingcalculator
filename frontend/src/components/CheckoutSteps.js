@@ -8,10 +8,10 @@ const CheckoutSteps = ({ setp1, step2, step3, step4 }) => {
             <Nav.Item>
             {setp1 ? (
                 <LinkContainer to='/login'>
-                    <Nav.Link>Sign In</Nav.Link>
+                    <Nav.Link>ログイン</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>Sign In</Nav.Link>
+                <Nav.Link disabled>ログイン</Nav.Link>
             )}
 
             </Nav.Item>

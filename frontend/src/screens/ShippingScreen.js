@@ -38,11 +38,8 @@ const ShippingScreen = ({ history }) => {
         </div>
         <FormContainer>
             
-            <h1>Shipping</h1>
-            <Alert variant="danger" >
-            We only deliver within UK 
-            (England, Scotland, Wales and Northern Ireland)
-            </Alert>
+            <h1>住所</h1>
+            
             <Form onSubmit = {submitHandler}>
                 <Form.Group countrolId='addressLine1'>
                     <Form.Label>
@@ -106,7 +103,7 @@ const ShippingScreen = ({ history }) => {
               <div className='mt-3'> 
 
                 <Button type='submit' varient='primary'>
-                    Continue
+                    次へ
                 </Button>
                 </div> 
             </Form>

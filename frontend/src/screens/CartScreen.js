@@ -32,10 +32,10 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
-        <h1>Shopping Cart</h1>
+        <h1>CO2センサー</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            商品が選択されていません <Link to='/'>戻る</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
@@ -48,7 +48,7 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={3}>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
+                  <Col md={2}>{item.price} 円 (税込)</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -86,13 +86,12 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
+                小計：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                点
               </h2>
-              $
               {cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
+                .toFixed(0)} 円 (税込)
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
@@ -101,7 +100,7 @@ const CartScreen = ({ match, location, history }) => {
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
-                Proceed To Checkout
+                次へ
               </Button>
             </ListGroup.Item>
           </ListGroup>
