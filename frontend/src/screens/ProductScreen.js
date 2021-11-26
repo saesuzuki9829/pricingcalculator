@@ -25,10 +25,7 @@ const ProductScreen = ({ history, match }) => {
       }
 return (
     <>
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-        <CheckoutSteps step1 />
-        </div>
-        <ProgressBar now={30} />
+    
     <Link className ='btn btn-light my-3' to='/home'>
         戻る
     </Link>

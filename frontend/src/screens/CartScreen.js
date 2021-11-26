@@ -32,10 +32,7 @@ const CartScreen = ({ match, location, history }) => {
 
   return (
     <>
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-    <CheckoutSteps step1 />
-    </div>
-    <ProgressBar now={30} />
+
     <Row>
       <Col md={8}>
         <h1>CO2センサー</h1>
