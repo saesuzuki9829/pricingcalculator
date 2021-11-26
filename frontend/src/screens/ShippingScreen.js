@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Alert } from 'react-bootstrap'
+import { Form, Button, Alert, ProgressBar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
@@ -36,10 +36,14 @@ const ShippingScreen = ({ history }) => {
         <div style={{display: 'flex', justifyContent: 'center'}}>
         <CheckoutSteps step2/>
         </div>
+        <ProgressBar now={50} />
         <FormContainer>
             
-            <h1>住所</h1>
-            
+            <h1>会社情報入力</h1>
+            <h3>会社名</h3>
+            <h3>お電話番号</h3>
+            <h3>ご住所</h3>
+            <Alert variant='danger'>配送料は別途いただいております</Alert>
             <Form onSubmit = {submitHandler}>
                 <Form.Group countrolId='addressLine1'>
                     <Form.Label>

@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card , ProgressBar} from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import CheckoutSteps from '../components/CheckoutSteps'
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
@@ -30,6 +31,11 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   return (
+    <>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+    <CheckoutSteps step1 />
+    </div>
+    <ProgressBar now={30} />
     <Row>
       <Col md={8}>
         <h1>CO2センサー</h1>
@@ -107,6 +113,7 @@ const CartScreen = ({ match, location, history }) => {
         </Card>
       </Col>
     </Row>
+    </>
   )
 }
 

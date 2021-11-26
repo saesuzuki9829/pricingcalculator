@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Alert } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
+import PrivacyPolicy from '../components/PrivacyPolicy'
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
@@ -68,6 +69,16 @@ const LoginScreen = ({ location, history }) => {
           </Link>
         </Col>
       </Row>
+      <Row className='py-3'>
+      <Alert variant='danger'>ログインすることにより下記「株式会社インフォコーパスプライバシーポリシー」
+      に同意されたとみなします。</Alert>
+      </Row>
+      <Row className='py-3'>
+      <Col>
+      <PrivacyPolicy />
+        </Col>
+      </Row>
+     
     </FormContainer>
   )
 }

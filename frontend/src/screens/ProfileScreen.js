@@ -65,9 +65,9 @@ const ProfileScreen = ( {location, history} ) => {
 
     return <Row>
         <Col md={3}>
-        <h2>登録情報</h2>
+        <h2>登録情報変更</h2>
             {message && <Message variant='danger'>{message}</Message>}
-            {profileUpdated && <Message varient="success"> 登録情報更新 </Message>}
+            {profileUpdated && <Message varient="success"> 登録情報を変更しました </Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>

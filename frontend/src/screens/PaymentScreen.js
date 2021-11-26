@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Col, Alert } from 'react-bootstrap'
+import { Form, Button, Col, Alert, ProgressBar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer' 
 import CheckoutSteps  from '../components/CheckoutSteps' 
@@ -38,11 +38,15 @@ const PaymentScreen = ({ history }) => {
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <CheckoutSteps step3 />
             </div>
+            <ProgressBar now={60} />
         <FormContainer>
             
-            <h1>Payment Method</h1>
-            <Form.Label as='legend'>Select Method</Form.Label>
-            <Alert variant='danger'>We only accept payments by credit card or PayPal </Alert>
+            <h1>注意事項</h1>
+            <Form.Label as='legend'></Form.Label>
+            <Alert variant='danger'>
+            お見積りの金額はあくまでも概算の金額であり、お客様のご予算や、
+            実際の導入時の状況によって金額は変動します
+            </Alert>
             
             <Form onSubmit = {submitHandler}>
                 <Form.Group>
@@ -52,7 +56,7 @@ const PaymentScreen = ({ history }) => {
                     <Col>
                     <Form.Check 
                         type='radio' 
-                        label ='Credit Card or PayPal' 
+                        label ='注意事項を確認しました。' 
                         id = 'PayPal'
                         name='paymentMethod'
                         value='PayPal' 
@@ -64,7 +68,7 @@ const PaymentScreen = ({ history }) => {
                     </Form.Group>
                     <div className='mt-3'> 
                 <Button type='submit' varient='primary'>
-                    Continue
+                    次へ
                 </Button>
                 </div>
             </Form>

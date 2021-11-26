@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Card, ProgressBar} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const PlaceOrderScreen = ({history}) => {
     
@@ -21,7 +22,7 @@ const PlaceOrderScreen = ({history}) => {
 
     // Calculate prices
     const addDecimals = (num) =>{
-      return (Math.round(num * 100) /100).toFixed(2)
+      return (Math.round(num * 100) /100).toFixed(0)
     }
 
     cart.itemsPrice = addDecimals(
@@ -30,12 +31,12 @@ const PlaceOrderScreen = ({history}) => {
       0
     ))
     cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
-    cart.taxPrice = addDecimals(Number((0.2 * cart.itemsPrice).toFixed(2)))
+    cart.taxPrice = addDecimals(Number((0.2 * cart.itemsPrice).toFixed(0)))
     cart.totalPrice = (
       Number(cart.itemsPrice) + 
       Number(cart.shippingPrice) + 
       Number(cart.taxPrice)
-    ).toFixed(2)
+    ).toFixed(0)
 
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
@@ -43,6 +44,8 @@ const PlaceOrderScreen = ({history}) => {
     useEffect(() => {
       if(success){
         history.push(`/order/${order._id}`)
+        dispatch({ type: ORDER_CREATE_RESET })
+
       }
       // eslint-disable-next-line
     },[history, success])
@@ -65,13 +68,14 @@ const PlaceOrderScreen = ({history}) => {
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <CheckoutSteps step4 />
               </div>
+              <ProgressBar now={70} />
                 <Row>
                   <Col md={8}>
                     <ListGroup varioant='flush'>
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
+                            <h2>会社情報</h2>
                             <p>
-                              <strong>Address:</strong>
+                              <strong>住所:</strong>
                               {' '}{cart.shippingAddress.addressLine1}, {' '}
                               {cart.shippingAddress.addressLine2}, {' '}
                               {cart.shippingAddress.townOrCity}, {' '}
@@ -90,9 +94,9 @@ const PlaceOrderScreen = ({history}) => {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                          <h2>Order Items</h2>
+                          <h2>CO2センサー</h2>
                             {cart.cartItems.length === 0 ? ( 
-                              <Message>Your cart is empty </Message>
+                              <Message> 商品が選択されていません </Message>
                             ):(
                               <ListGroup variant='flush'>
                                 {cart.cartItems.map((item, index) => (
@@ -114,7 +118,7 @@ const PlaceOrderScreen = ({history}) => {
                                       </Col>
 
                                       <Col md={4}>
-                                        {item.qty} x ${item.price} = ${item.qty * item.price}
+                                        {item.qty} x {item.price} 円（税込） = {item.qty * item.price} 円（税込）
                                       </Col>
                                     </Row>
                                   </ListGroup.Item>
@@ -132,12 +136,12 @@ const PlaceOrderScreen = ({history}) => {
           <Card>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>概算お見積内訳</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>CO2センサー</Col>
+                  <Col>¥{cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -169,7 +173,7 @@ const PlaceOrderScreen = ({history}) => {
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  Place Order
+                  概算お見積を出力
                 </Button>
                 
               </ListGroup.Item>

@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, ProgressBar} from 'react-bootstrap'
 import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
+import CheckoutSteps from '../components/CheckoutSteps'
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
@@ -19,7 +20,11 @@ const HomeScreen = () => {
 
     return (
         <>
-            <h1>CO2センサー</h1>
+         <div style={{display: 'flex', justifyContent: 'center'}}>
+        <CheckoutSteps step1 />
+        </div>
+        <ProgressBar now={30} />
+            <h3>CO2センサーを選んでください</h3>
             {loading ? (
                 <Loader />
             ) : error ? (

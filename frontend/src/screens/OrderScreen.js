@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Card, ProgressBar} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
+import CheckoutSteps  from '../components/CheckoutSteps'
 
 const OrderScreen = ({history, match}) => {
 
@@ -44,6 +45,10 @@ const OrderScreen = ({history, match}) => {
             {error}
         </Message> : 
         <> 
+         <div style={{display: 'flex', justifyContent: 'center'}}>
+    <CheckoutSteps step5 />
+    </div>
+    <ProgressBar now={100} />
             <h1>Order {order._id}</h1> 
             <Row>
                 <Col md={8}>
