@@ -4,6 +4,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
+  CART_SAVE_PERSONAL_INFOMATION
 } from '../constants/cartConstants'
 
 
@@ -34,19 +35,19 @@ export const removeFromCart = (id) => (dispatch, getState) => {
 }
 
 
-export const saveShippingAddress = (data) => (dispatch) => {
-  dispatch({
-    type: CART_SAVE_SHIPPING_ADDRESS,
-    payload: data,
-  })
-
-  localStorage.setItem('shippingAddress', JSON.stringify(data))
-}
-
 export const savePaymentMethod = (data) => (dispatch) => {
   dispatch({
     type: CART_SAVE_PAYMENT_METHOD,
     payload: data
   })
   localStorage.setItem('paymentMethod', JSON.stringify(data))
+}
+
+export const savePersonalInformation = (data) => (dispatch) => {
+  dispatch({
+    type: CART_SAVE_PERSONAL_INFOMATION,
+    payload: data,
+  })
+
+  localStorage.setItem('personalInfomation', JSON.stringify(data))
 }

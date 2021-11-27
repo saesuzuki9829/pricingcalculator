@@ -21,13 +21,13 @@ const orderSchema = mongoose.Schema(
           },
         },
     ],
-    shippingAddress: {
-        addressLine1: { type: String, required: true },
-        addressLine2: { type: String, required: true },
-        townOrCity: { type: String, required: true },
-        county: { type: String, required: true },
-        postCode: { type: String, required: true },
-      },
+    personalInfomation: {
+      name:{ type: String, required: true},
+      email:{type: String, required: true},
+      company:{type: String, required: true},
+      title:{type: String, required: true},
+      phoneNumber:{type: String, required: true}
+    },
       paymentMethod: {
         type: String,
         required: true,

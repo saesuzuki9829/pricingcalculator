@@ -4,10 +4,11 @@ import {
     CART_SAVE_SHIPPING_ADDRESS,
     CART_SAVE_PAYMENT_METHOD,
     CART_CLEAR_ITEMS,
+    CART_SAVE_PERSONAL_INFOMATION,
   } from '../constants/cartConstants'
   
   export const cartReducer = (
-    state = { cartItems: [], shippingAddress: {} },
+    state = { cartItems: [], personalInfomation:{} },
     action
   ) => {
     switch (action.type) {
@@ -34,10 +35,11 @@ import {
           ...state,
           cartItems: state.cartItems.filter((x) => x.product !== action.payload),
         }
-      case CART_SAVE_SHIPPING_ADDRESS:
+   
+      case CART_SAVE_PERSONAL_INFOMATION:
         return {
           ...state,
-          shippingAddress: action.payload,
+          personalInfomation: action.payload,
         }
       case CART_SAVE_PAYMENT_METHOD:
         return {

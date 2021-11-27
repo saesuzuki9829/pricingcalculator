@@ -68,14 +68,32 @@ const OrderScreen = ({history, match}) => {
                                     {order.user.email}
                                 </a>
                             </p>
+                            <h2>会社情報</h2>
                             <p>
-                                <strong>Address:</strong>
-                                {' '}{order.shippingAddress.addressLine1}, {' '}
-                                {order.shippingAddress.addressLine2}, {' '}
-                                {order.shippingAddress.townOrCity}, {' '}
-                                {order.shippingAddress.county}, {' '}
-                                {order.shippingAddress.postCode}
+                              <strong>担当者様お名前:</strong>
+                              {' '}
+                              {order.personalInfomation.name}
                             </p>
+                            <p> <strong>Email:</strong>
+                            {' '}
+                            {order.personalInfomation.email}
+                             
+                              </p>
+                              <p> <strong>会社名:</strong>
+                            {' '}
+                            {order.personalInfomation.company}
+                             
+                              </p>
+                              <p> <strong>所属部署名:</strong>
+                            {' '}
+                            {order.personalInfomation.title}
+                             
+                              </p>
+                              <p> <strong>電話番号:</strong>
+                            {' '}
+                            {order.personalInfomation.phoneNumber}
+                             
+                              </p>
                             {order.isDelivered ? (
                                 <Message variant='success'> Delivered on {order.deliveredAt}</Message>
                             ) : (

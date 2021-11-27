@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
-import { Form, Button, Alert, ProgressBar } from 'react-bootstrap'
+import styled from 'styled-components'
+import { Form, Button, ProgressBar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
-import { saveShippingAddress } from '../actions/cartActions'
+import { savePersonalInformation } from '../actions/cartActions'
+import PrivacyPolicy from '../components/PrivacyPolicy'
+
+const Container = styled.div`
+padding: 1rem;
+`
 
 const ShippingScreen = ({ history }) => {
 
@@ -15,19 +21,20 @@ const ShippingScreen = ({ history }) => {
     }
 
     const cart = useSelector((state) => state.cart)
-    const { shippingAddress } = cart
+    const { personalInfomation } = cart
+ 
+    const [name, setName] = useState(personalInfomation.name)
+    const [email, setEmail] = useState(personalInfomation.email)
+    const [company, setCompany] = useState(personalInfomation.company)
+    const [title, setTitle] = useState(personalInfomation.title)
+    const [phoneNumber, setPhoneNumber] = useState(personalInfomation.phoneNumber)
 
-    const [ addressLine1, setAddressLine1 ] = useState(shippingAddress.addressLine2)
-    const [ addressLine2, setAddressLine2 ] = useState(shippingAddress.addressLine1)
-    const [ townOrCity, setTownOrCity ] = useState(shippingAddress.townOrCity)
-    const [ county, setCounty ] = useState(shippingAddress.county)
-    const [ postCode, setPostCode ] = useState(shippingAddress.postCode)
 
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(saveShippingAddress({addressLine1, addressLine2, townOrCity, county, postCode}))
+        dispatch(savePersonalInformation({name, email, company, title, phoneNumber}))
         history.push('/payment')
     }
     return (
@@ -38,72 +45,82 @@ const ShippingScreen = ({ history }) => {
         </div>
         <ProgressBar now={50} />
         <FormContainer>
-            
-            <h1>会社情報入力</h1>
-            <h3>会社名</h3>
-            <h3>お電話番号</h3>
-            <h3>ご住所</h3>
-            <Alert variant='danger'>配送料は別途いただいております</Alert>
             <Form onSubmit = {submitHandler}>
-                <Form.Group countrolId='addressLine1'>
-                    <Form.Label>
-                        Address Line 1
-                    </Form.Label>
-                    <Form.Control 
+            <h1>会社情報入力</h1>
+            <Container>
+            <Form.Group countrolId='name'>
+                <Form.Label>
+                        担当者様お名前
+                </Form.Label>
+                <Form.Control 
                         type ='text' 
-                        placeholder='Enter Address Line 1' 
-                        value={addressLine1} 
-                        onChange={(e)=> setAddressLine1(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group countrolId='addressLine2'>
-                    <Form.Label>
-                        Address Line 2
-                    </Form.Label>
-                    <Form.Control 
+                        placeholder='お名前' 
+                        value={name} 
+                        onChange={(e)=> setName(e.target.value)}>
+                </Form.Control>
+            </Form.Group>
+            <Form.Group countrolId='email'>
+                <Form.Label>
+                Email
+                </Form.Label>
+                <Form.Control 
                         type ='text' 
-                        placeholder='Enter Address Line 2' 
-                        value={addressLine2} 
-                        onChange={(e)=> setAddressLine2(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group countrolId='townOrCity'>
-                    <Form.Label>
-                        Town or City
-                    </Form.Label>
-                    <Form.Control 
+                        placeholder='Email' 
+                        value={email} 
+                        onChange={(e)=> setEmail(e.target.value)}>
+                </Form.Control>
+               
+            </Form.Group>
+            <Form.Group countrolId='company'>
+                <Form.Label>
+                会社名
+                </Form.Label>
+                <Form.Control 
                         type ='text' 
-                        placeholder='Enter Town or City' 
-                        value={townOrCity} 
-                        onChange={(e)=> setTownOrCity(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group countrolId='county'>
-                    <Form.Label>
-                        County
-                    </Form.Label>
-                    <Form.Control 
+                        placeholder='会社名' 
+                        value={company} 
+                        onChange={(e)=> setCompany(e.target.value)}>
+                </Form.Control>
+            </Form.Group>
+            <Form.Group countrolId='company'>
+                <Form.Label>
+                所属部署名
+                </Form.Label>
+                <Form.Control 
                         type ='text' 
-                        placeholder='Enter County' 
-                        value={county} 
-                        onChange={(e)=> setCounty(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
-
-                <Form.Group countrolId='postCode'>
-                    <Form.Label>
-                        Post Code
-                    </Form.Label>
-                    <Form.Control 
+                        placeholder='部署名' 
+                        value={title} 
+                        onChange={(e)=> setTitle(e.target.value)}>
+                </Form.Control>
+            </Form.Group>
+            <Form.Group countrolId='email'>
+                <Form.Label>
+                電話番号
+                </Form.Label>
+                <Form.Control 
                         type ='text' 
-                        placeholder='Enter pPst Code' 
-                        value={postCode} 
-                        onChange={(e)=> setPostCode(e.target.value)}>
-                    </Form.Control>
-                </Form.Group>
+                        placeholder='電話番号' 
+                        value={phoneNumber} 
+                        onChange={(e)=> setPhoneNumber(e.target.value)}>
+                </Form.Control>
+               
+            </Form.Group>
+        </Container>
+       
+                <Container>
+                <Form.Group>
+                <Form.Label>  プライバシーポリシー </Form.Label>
+               
+                <div key={`privacypolicy`} className="mb-3">
+                <PrivacyPolicy />
+                    <Form.Check
+                    label={`上記内容を理解し、プライバシーポリシーに同意します`}
+                    id={`privacypolicy`}
+                    
+                    />  
+                    </div>   
+                    </Form.Group>
+                    </Container>
               <div className='mt-3'> 
 
                 <Button type='submit' varient='primary'>

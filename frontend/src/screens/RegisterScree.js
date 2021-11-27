@@ -81,10 +81,6 @@ const RegisterScreen = ( {location, history} ) => {
                 </Form.Group>
             
                 <Form.Group>
-
-                
-    
-                
                 <Form.Label>  プライバシーポリシー </Form.Label>
                 
                 <div key={`privacypolicy`} className="mb-3">

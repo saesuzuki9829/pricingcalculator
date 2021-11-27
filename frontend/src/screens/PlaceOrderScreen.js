@@ -53,7 +53,7 @@ const PlaceOrderScreen = ({history}) => {
     const placeOrderHandler = () => {
       dispatch(createOrder({
         orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
+        personalInfomation: cart.personalInfomation,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
         shippingPrice: cart.shippingPrice,
@@ -75,13 +75,31 @@ const PlaceOrderScreen = ({history}) => {
                         <ListGroup.Item>
                             <h2>会社情報</h2>
                             <p>
-                              <strong>住所:</strong>
-                              {' '}{cart.shippingAddress.addressLine1}, {' '}
-                              {cart.shippingAddress.addressLine2}, {' '}
-                              {cart.shippingAddress.townOrCity}, {' '}
-                              {cart.shippingAddress.county}, {' '}
-                              {cart.shippingAddress.postCode}
+                              <strong>担当者様お名前:</strong>
+                              {' '}
+                              {cart.personalInfomation.name}
                             </p>
+                            <p> <strong>Email:</strong>
+                            {' '}
+                            {cart.personalInfomation.email}
+                             
+                              </p>
+                              <p> <strong>会社名:</strong>
+                            {' '}
+                            {cart.personalInfomation.company}
+                             
+                              </p>
+                              <p> <strong>所属部署名:</strong>
+                            {' '}
+                            {cart.personalInfomation.title}
+                             
+                              </p>
+                              <p> <strong>電話番号:</strong>
+                            {' '}
+                            {cart.personalInfomation.phoneNumber}
+                             
+                              </p>
+                         
                         </ListGroup.Item>
 
                         <ListGroup.Item>
