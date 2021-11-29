@@ -7,11 +7,11 @@ import User from '../models/userModel.js'
 // @router  POST/api/users/login
 // @access  Public
 const authUser =asyncHandler(async(req, res) => {
-    const { email, password } = req.body
+    const { email } = req.body
 
     const user = await User.findOne({email})
 
-    if(user && (await user.matchPassword(password))){
+    if(user){
         res.json({
             _id: user._id,
             name: user.name,
@@ -21,7 +21,7 @@ const authUser =asyncHandler(async(req, res) => {
         })
     } else {
         res.status(401)
-        throw new Error('Invalid email or password')
+        throw new Error('Invalid')
     }
 })
 
@@ -30,7 +30,7 @@ const authUser =asyncHandler(async(req, res) => {
 // @router  POST/api/users
 // @access  Public
 const registerUser =asyncHandler(async(req, res) => {
-    const { name, email, password } = req.body
+    const { name, email } = req.body
 
     const userExists = await User.findOne({email})
 
@@ -41,8 +41,7 @@ const registerUser =asyncHandler(async(req, res) => {
 
     const user = await User.create({
         name,
-        email,
-        password
+        email
     })
 
     if(user){
@@ -88,9 +87,7 @@ const updateUserProfile =asyncHandler(async(req, res) => {
     if(user){
         user.name =req.body.name || user.name
         user.email = req.body.email || user.email
-        if(req.body.password){
-            user.password = req.body.password
-        }
+    
 
         const updatedUser = await user.save()
         res.status(201).json({

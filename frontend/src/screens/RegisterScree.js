@@ -11,8 +11,7 @@ import PrivacyPolicy from '../components/PrivacyPolicy'
 const RegisterScreen = ( {location, history} ) => {
         const[name, setName] =  useState('')
         const[email, setEmail] =  useState('')
-        const[password, setPassword] = useState('')
-        const[confirmPassword, setConfirmPassword] = useState('')
+       
         const[message, setMessage] = useState(null)
 
         const dispatch = useDispatch()
@@ -30,10 +29,8 @@ const RegisterScreen = ( {location, history} ) => {
 
             const submitHandler = (e) => {
                 e.preventDefault()
-                if(password !== confirmPassword){
-                    setMessage('Password do not match')
-                } else{
-                    dispatch(register(name, email, password));
+                {
+                    dispatch(register(name, email));
                     setMessage(null)
             }
         }
@@ -65,20 +62,7 @@ const RegisterScreen = ( {location, history} ) => {
                     <Form.Control type ='email' placeholder='Email' value={email} onChange={(e)=> setEmail(e.target.value)}></Form.Control>
                 </Form.Group>
 
-                <Form.Group countrolId='password'>
-                    <Form.Label>
-                        パスワード
-                    </Form.Label>
-                    <Form.Control type ='password' placeholder='パスワード' value={password} onChange={(e)=> setPassword(e.target.value)}></Form.Control>
-                  
-                </Form.Group>
-
-                <Form.Group countrolId='confirmPassword'>
-                    <Form.Label>
-                        パスワード確認
-                    </Form.Label>
-                    <Form.Control type ='password' placeholder='パスワード' value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)}></Form.Control>
-                </Form.Group>
+                
             
                 <Form.Group>
                 <Form.Label>  プライバシーポリシー </Form.Label>

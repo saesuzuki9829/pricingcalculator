@@ -10,7 +10,6 @@ import PrivacyPolicy from '../components/PrivacyPolicy'
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
   const dispatch = useDispatch()
 
@@ -27,7 +26,7 @@ const LoginScreen = ({ location, history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(login(email, password))
+    dispatch(login(email))
   }
 
   return (
@@ -46,15 +45,7 @@ const LoginScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId='password'>
-          <Form.Label>パスワード</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+       
         <div className='mt-3'> 
         <Button type='submit' variant='primary'>
         ログイン

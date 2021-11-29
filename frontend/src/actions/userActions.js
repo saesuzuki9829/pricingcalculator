@@ -15,7 +15,7 @@ import {
     USER_LOGIN_REQUEST
 } from "../constants/userConstants"
 
-export const login = (email, password) => async (dispatch) => {
+export const login = (email) => async (dispatch) => {
     try {
       dispatch({
         type: USER_LOGIN_REQUEST,
@@ -29,7 +29,7 @@ export const login = (email, password) => async (dispatch) => {
   
       const { data } = await axios.post(
         '/api/users/login',
-        { email, password },
+        { email },
         config
       )
   
@@ -60,7 +60,7 @@ export const logout = () => (dispatch) => {
     document.location.href = '/login'
 }
 
-export const register  =(name, email, password) => async (dispatch) =>{
+export const register  =(name, email) => async (dispatch) =>{
     try{
         dispatch({
             type:USER_REGISTER_REQUEST
@@ -73,7 +73,7 @@ export const register  =(name, email, password) => async (dispatch) =>{
         }
         const { data } = await axios.post(
             '/api/users',
-            { name, email, password }, 
+            { name, email }, 
             config
         )
         
