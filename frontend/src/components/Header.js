@@ -28,9 +28,7 @@ const Header = () => {
             <Button variant='primary' size="sm">資料ダウンロード</Button> 
                 {userInfo ? (
                     <NavDropdown title ={userInfo.name} id='username'>
-                      <LinkContainer to='/profile'>
-                        <NavDropdown.Item>お客様情報</NavDropdown.Item>
-                        </LinkContainer>
+ 
                         <NavDropdown.Item onClick ={logoutHandler}>ログアウト</NavDropdown.Item>
                           </NavDropdown>
                 ) : <LinkContainer to='/login'>
