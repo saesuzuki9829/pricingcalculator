@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { savePersonalInformation } from '../actions/cartActions'
-import PrivacyPolicy from '../components/PrivacyPolicy'
+
 
 const Container = styled.div`
 padding: 1rem;
@@ -50,7 +50,7 @@ const ShippingScreen = ({ history }) => {
             <Container>
             <Form.Group countrolId='name'>
                 <Form.Label>
-                        担当者様お名前
+                        ご担当者様お名前
                 </Form.Label>
                 <Form.Control 
                         type ='text' 
@@ -73,7 +73,7 @@ const ShippingScreen = ({ history }) => {
             </Form.Group>
             <Form.Group countrolId='company'>
                 <Form.Label>
-                会社名
+                貴社名
                 </Form.Label>
                 <Form.Control 
                         type ='text' 
@@ -107,20 +107,7 @@ const ShippingScreen = ({ history }) => {
             </Form.Group>
         </Container>
        
-                <Container>
-                <Form.Group>
-                <Form.Label>  プライバシーポリシー </Form.Label>
-               
-                <div key={`privacypolicy`} className="mb-3">
-                <PrivacyPolicy />
-                    <Form.Check
-                    label={`上記内容を理解し、プライバシーポリシーに同意します`}
-                    id={`privacypolicy`}
-                    
-                    />  
-                    </div>   
-                    </Form.Group>
-                    </Container>
+             
               <div className='mt-3'> 
 
                 <Button type='submit' varient='primary'>

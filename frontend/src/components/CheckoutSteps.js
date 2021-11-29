@@ -19,20 +19,20 @@ const CheckoutSteps = ({ setp1, step2, step3, step4, step5}) => {
             <Nav.Item>
             {step2 ? (
                 <LinkContainer to='/shipping'>
-                    <Nav.Link>2. 会社情報入力</Nav.Link>
+                    <Nav.Link>2. お客様情報入力</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>2. 会社情報入力</Nav.Link>
+                <Nav.Link disabled>2. お客様情報入力</Nav.Link>
             )}
 
             </Nav.Item>
             <Nav.Item>
             {step3 ? (
                 <LinkContainer to='/payment'>
-                    <Nav.Link>3. 注意事項</Nav.Link>
+                    <Nav.Link>3. プライバシーポリシー</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>3. 注意事項</Nav.Link>
+                <Nav.Link disabled>3. プライバシーポリシー</Nav.Link>
             )}
 
             </Nav.Item>
@@ -49,10 +49,10 @@ const CheckoutSteps = ({ setp1, step2, step3, step4, step5}) => {
             <Nav.Item>
             {step5  ? (
                 <LinkContainer to='/placeorder'>
-                    <Nav.Link>5. 概算見積り</Nav.Link>
+                    <Nav.Link>5. 概算お見積り</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>5. 概算見積り</Nav.Link>
+                <Nav.Link disabled>5. 概算お見積り</Nav.Link>
             )}
 
             </Nav.Item>

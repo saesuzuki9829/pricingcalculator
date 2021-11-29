@@ -74,7 +74,7 @@ const HomeScreen = () => {
         <section id='example'>
         <Container>
         <Scroll to="co2Sensor" smooth={false}>
-            <Pulse><Button variant='success' size="lg">簡単！オンライン見積り</Button></Pulse>
+            <Pulse><Button variant='success' size="lg">Webで簡単！オンライン見積り</Button></Pulse>
                     </Scroll>
                     </Container>
                     <Container>

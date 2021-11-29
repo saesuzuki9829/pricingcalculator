@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer' 
 import CheckoutSteps  from '../components/CheckoutSteps' 
 import { savePaymentMethod } from '../actions/cartActions'
+import PrivacyPolicy from '../components/PrivacyPolicy'
 
 const PaymentScreen = ({ history }) => {
 
@@ -41,12 +42,12 @@ const PaymentScreen = ({ history }) => {
             <ProgressBar now={60} />
         <FormContainer>
             
-            <h1>注意事項</h1>
-            <Form.Label as='legend'></Form.Label>
-            <Alert variant='danger'>
-            お見積りの金額はあくまでも概算の金額であり、お客様のご予算や、
-            実際の導入時の状況によって金額は変動します
-            </Alert>
+            <h1>プライバシーポリシー</h1>
+   
+        
+               
+              <PrivacyPolicy />
+            
             
             <Form onSubmit = {submitHandler}>
                 <Form.Group>
@@ -56,7 +57,7 @@ const PaymentScreen = ({ history }) => {
                     <Col>
                     <Form.Check 
                         type='radio' 
-                        label ='注意事項を確認しました。' 
+                        label ='上記プライバシーポリシーに同意します' 
                         id = 'PayPal'
                         name='paymentMethod'
                         value='PayPal' 

@@ -73,7 +73,7 @@ const PlaceOrderScreen = ({history}) => {
                   <Col md={8}>
                     <ListGroup varioant='flush'>
                         <ListGroup.Item>
-                            <h2>会社情報</h2>
+                            <h2>お客様情報</h2>
                             <p>
                               <strong>担当者様お名前:</strong>
                               {' '}
@@ -84,7 +84,7 @@ const PlaceOrderScreen = ({history}) => {
                             {cart.personalInfomation.email}
                              
                               </p>
-                              <p> <strong>会社名:</strong>
+                              <p> <strong>貴社名:</strong>
                             {' '}
                             {cart.personalInfomation.company}
                              

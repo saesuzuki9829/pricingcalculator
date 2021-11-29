@@ -89,7 +89,7 @@ const CartScreen = ({ match, location, history }) => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                小計：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
+              数量：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
                 点
               </h2>
               {cartItems

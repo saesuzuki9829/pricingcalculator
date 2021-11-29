@@ -18,7 +18,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 
   if(orderItems && orderItems.length === 0){
     res.status(400)
-    throw new Error('No order items')
+    throw new Error('商品が選択されていません')
     return
   } else {
     const order = new Order({

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form, ProgressBar } from 'react-bootstrap'
-import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProductDetails } from '../actions/productActions'
@@ -34,38 +33,24 @@ return (
             <Col   Col md={6}>
                 <Image src={product.image} alt={product.name} fluid/>
             </Col>
-            <Col md={3}>
+            <Col md={6}>
                 <ListGroup variant='flush'>
                     <ListGroup.Item>
                         <h3>{product.name}</h3>
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <Rating 
-                            value={product.rating} 
-                            text={`${product.numReviews} reviews`}
-                        />
-                    </ListGroup.Item>
-                    <ListGroup.Item>価格: {product.price} 円 (税込)</ListGroup.Item>
+                  
+                    <ListGroup.Item>会社名: {product.brand} </ListGroup.Item>
                     <ListGroup.Item>詳細: {product.description}</ListGroup.Item>
                 </ListGroup>
-            </Col>
-            <Col md ={3}>
-                <Card>
-                    <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                                <Row>
-                                    <Col>価格:</Col>
-                                    <Col>
-                                    <strong>{product.price} 円 (税込)</strong>
-                                    </Col>
-                                </Row>
-                        </ListGroup.Item>
 
+                <Card style={{ width: '18rem' }} >
+                    <ListGroup variant='flush'>
+                        
                         <ListGroup.Item>
                                 <Row>
                                     <Col>在庫:</Col>
                                     <Col>
-                                    {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                                    {product.countInStock > 0 ? '在庫あり' : '在庫なし'}
                                     </Col>
                                 </Row>
                         </ListGroup.Item>
@@ -90,7 +75,7 @@ return (
                       </ListGroup.Item>
                     )}
 
-                        <ListGroup.Item>
+                        <ListGroup.Item >
                         <div className='mt-3'> 
                             <Button 
                             onClick={addToCartHandler}
@@ -105,6 +90,8 @@ return (
                     </ListGroup>
                 </Card>
             </Col>
+          
+          
         </Row>
     )}
     </>

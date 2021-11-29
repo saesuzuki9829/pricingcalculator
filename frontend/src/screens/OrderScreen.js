@@ -23,7 +23,7 @@ const OrderScreen = ({history, match}) => {
             
             //   Calculate prices
             const addDecimals = (num) => {
-            return (Math.round(num * 100) / 100).toFixed(2)
+            return (Math.round(num * 100) / 100).toFixed(0)
             }
         
             order.itemsPrice = addDecimals(
@@ -49,75 +49,15 @@ const OrderScreen = ({history, match}) => {
     <CheckoutSteps step5 />
     </div>
     <ProgressBar now={100} />
-            <h1>Order {order._id}</h1> 
+            <h1>概算お見積り</h1> 
             <Row>
-                <Col md={8}>
+                <Col md={20}>
                     <ListGroup varioant='flush'>
+                      
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
-                            <p>
-                                <strong>
-                                    Name:
-                                </strong> {' '}{order.user.name}
-                            </p>
-                            <p>
-                                <strong>
-                                    Email:
-                                </strong> {' '}
-                                <a href={`mail:${order.user.email}`}>
-                                    {order.user.email}
-                                </a>
-                            </p>
-                            <h2>会社情報</h2>
-                            <p>
-                              <strong>担当者様お名前:</strong>
-                              {' '}
-                              {order.personalInfomation.name}
-                            </p>
-                            <p> <strong>Email:</strong>
-                            {' '}
-                            {order.personalInfomation.email}
-                             
-                              </p>
-                              <p> <strong>会社名:</strong>
-                            {' '}
-                            {order.personalInfomation.company}
-                             
-                              </p>
-                              <p> <strong>所属部署名:</strong>
-                            {' '}
-                            {order.personalInfomation.title}
-                             
-                              </p>
-                              <p> <strong>電話番号:</strong>
-                            {' '}
-                            {order.personalInfomation.phoneNumber}
-                             
-                              </p>
-                            {order.isDelivered ? (
-                                <Message variant='success'> Delivered on {order.deliveredAt}</Message>
-                            ) : (
-                                <Message variant ='danger'>Not Delivered</Message>
-                            )}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <h2>Payment Method</h2>
-                            <p>
-                                <strong>Method:</strong>
-                                {' '}{order.paymentMethod}
-                            </p>
-                            {order.isPaid ? (
-                                <Message variant='success'> Paid on {order.paidAt}</Message>
-                            ) : (
-                                <Message variant ='danger'>Not Paid</Message>
-                            )}
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <h2>Order Items</h2>
+                            <h2>お見積り明細</h2>
                             {order.orderItems.length === 0 ? ( 
-                                <Message>Order is empty </Message>
+                                <Message>商品が選択されていません </Message>
                             ):(
                                 <ListGroup variant='flush'>
                                 {order.orderItems.map((item, index) => (
@@ -139,7 +79,7 @@ const OrderScreen = ({history, match}) => {
                                             </Col>
 
                                             <Col md={4}>
-                                                {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                {item.qty} x {item.price}=  {item.qty * item.price} 円（税別）
                                             </Col>
                                         </Row>
                                     </ListGroup.Item>
@@ -151,41 +91,67 @@ const OrderScreen = ({history, match}) => {
                         </ListGroup.Item>
 
                     </ListGroup>
-                </Col>
-
-                <Col md={4}>
                     <Card>
                         <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                                <h2>Order Summary</h2>
-                            </ListGroup.Item>
+                        
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Items</Col>
-                                    <Col>${order.itemsPrice}</Col>
+                                    <Col>CO2センサー</Col>
+                                    <Col>{order.itemsPrice} 円（税別）</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping</Col>
-                                    <Col>${order.shippingPrice}</Col>
+                                    <Col>初期設定費用</Col>
+                                    <Col>{order.shippingPrice} 円（税別）</Col>
                                 </Row>
                             </ListGroup.Item>
+                        
                             <ListGroup.Item>
                             <Row>
-                                <Col>Tax</Col>
-                                <Col>${order.taxPrice}</Col>
-                            </Row>
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                            <Row>
-                                <Col>Total</Col>
-                                <Col>${order.totalPrice}</Col>
+                                <Col>合計</Col>
+                                <Col>{order.totalPrice} 円（税別）</Col>
                             </Row>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
+
+                    <ListGroup.Item>
+                      
+                      <h2>お客様情報</h2>
+                      <p>
+                        <strong>ご担当者様お名前:</strong>
+                        {' '}
+                        {order.personalInfomation.name}
+                      </p>
+                      <p> <strong>Email:</strong>
+                      {' '}
+                      {order.personalInfomation.email}
+                       
+                        </p>
+                        <p> <strong>貴社名:</strong>
+                      {' '}
+                      {order.personalInfomation.company}
+                       
+                        </p>
+                        <p> <strong>所属部署名:</strong>
+                      {' '}
+                      {order.personalInfomation.title}
+                       
+                        </p>
+                        <p> <strong>電話番号:</strong>
+                      {' '}
+                      {order.personalInfomation.phoneNumber}
+                       
+                        </p>
+                    
+                  </ListGroup.Item>
+
+                 
+
                 </Col>
+
+             
             </Row>
         </> 
 }
