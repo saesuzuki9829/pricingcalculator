@@ -7,18 +7,8 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { savePersonalInformation } from '../actions/cartActions'
 
 
-const Container = styled.div`
-padding: 1rem;
-`
-
 const ShippingScreen = ({ history }) => {
 
-    const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
-    
-     if(!userInfo) {
-        history.push('/login')
-    }
 
     const cart = useSelector((state) => state.cart)
     const { personalInfomation } = cart
@@ -47,7 +37,7 @@ const ShippingScreen = ({ history }) => {
         <FormContainer>
             <Form onSubmit = {submitHandler}>
             <h1>会社情報入力</h1>
-            <Container>
+
             <Form.Group countrolId='name'>
                 <Form.Label>
                         ご担当者様お名前
@@ -105,7 +95,7 @@ const ShippingScreen = ({ history }) => {
                 </Form.Control>
                
             </Form.Group>
-        </Container>
+
        
              
               <div className='mt-3'> 
