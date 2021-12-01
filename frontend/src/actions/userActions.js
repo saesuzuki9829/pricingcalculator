@@ -60,7 +60,7 @@ export const logout = () => (dispatch) => {
     document.location.href = '/login'
 }
 
-export const register  =(name, email) => async (dispatch) =>{
+export const register  =(name, email, title, phoneNumber, company ) => async (dispatch) =>{
     try{
         dispatch({
             type:USER_REGISTER_REQUEST
@@ -73,7 +73,7 @@ export const register  =(name, email) => async (dispatch) =>{
         }
         const { data } = await axios.post(
             '/api/users',
-            { name, email }, 
+            { name, email, title, phoneNumber, company }, 
             config
         )
         
@@ -109,7 +109,7 @@ export const getUserDetails = (id) => async (dispatch, getState) =>{
         const config ={
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+            
             }
         }
         const { data } = await axios.get(
@@ -145,7 +145,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) =>{
         const config ={
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
             }
         }
         const { data } = await axios.put(

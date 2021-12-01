@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler'
-import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
 
 
@@ -16,8 +15,9 @@ const authUser =asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
-            token: generateToken(user._id)
+            company:user.company,
+            phoneNumber:user.phoneNumber,
+            title: user.title
         })
     } else {
         res.status(401)
@@ -30,7 +30,7 @@ const authUser =asyncHandler(async(req, res) => {
 // @router  POST/api/users
 // @access  Public
 const registerUser =asyncHandler(async(req, res) => {
-    const { name, email } = req.body
+    const { name, email, title, company, phoneNumber} = req.body
 
     const userExists = await User.findOne({email})
 
@@ -41,7 +41,10 @@ const registerUser =asyncHandler(async(req, res) => {
 
     const user = await User.create({
         name,
-        email
+        email,
+        title,
+        company,
+        phoneNumber
     })
 
     if(user){
@@ -49,8 +52,9 @@ const registerUser =asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
-            token: generateToken(user._id)
+            company:user.company,
+            phoneNumber:user.phoneNumber,
+            title: user.title
         })
     } else{
         res.status(400)
@@ -70,7 +74,9 @@ const getUserProfile =asyncHandler(async(req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            company:user.company,
+            phoneNumber:user.phoneNumber,
+            title: user.title
         })
     } else{
         res.status(404)
@@ -87,15 +93,18 @@ const updateUserProfile =asyncHandler(async(req, res) => {
     if(user){
         user.name =req.body.name || user.name
         user.email = req.body.email || user.email
-    
+        user.title = req.body.titile || user.titile
+        user.company = req.body.company || user.company
+        user.phoneNumber = req.body.phoneNumber || user.phoneNumber
 
         const updatedUser = await user.save()
         res.status(201).json({
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
-            isAdmin: updatedUser.isAdmin,
-            token: generateToken(user._id)
+            company:user.company,
+            phoneNumber:user.phoneNumber,
+            company: user.title
         })
         
     } else{

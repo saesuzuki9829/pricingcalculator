@@ -1,24 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col, Alert} from 'react-bootstrap'
+import { Form, Button, Row, Col, ProgressBar } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
-import PrivacyPolicy from '../components/PrivacyPolicy'
+import CheckoutSteps from '../components/CheckoutSteps'
 
-const RegisterScreen = ( {location, history} ) => {
-        const[name, setName] =  useState('')
-        const[email, setEmail] =  useState('')
-       
+const RegisterScreen = ({ location, history }) => {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [title, setTitle] = useState('')
+    const [company, setCompany] = useState('')
+   const [phoneNumber, setPhoneNumber] = useState('')
+
+
         const[message, setMessage] = useState(null)
 
         const dispatch = useDispatch()
 
         const userRegister = useSelector((state) => state.userRegister)
-        const  { loading, error, userInfo } = userRegister
-
+        const { loading, error, userInfo } = userRegister
+      
         const redirect = location.search ? location.search.split('=')[1] : '/'
 
         useEffect(() => {
@@ -30,22 +34,24 @@ const RegisterScreen = ( {location, history} ) => {
             const submitHandler = (e) => {
                 e.preventDefault()
                 {
-                    dispatch(register(name, email));
+                    dispatch(register(name, email, title, phoneNumber, company));
                     setMessage(null)
             }
         }
 
     return (
+        <>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+        <CheckoutSteps step2/>
+        </div>
+        <ProgressBar now={50} />
         <FormContainer>
             <h1>新規登録</h1>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Row className='py-3'>
-                <Col>
-                登録済みですか？{' '}
-                <Link to={redirect ? `/login?redirect=${redirect}`:'/login'}>ログイン</Link>
-                </Col>
+              
             </Row>
             <Form onSubmit={submitHandler}>
                 <Form.Group countrolId='name'>
@@ -61,21 +67,42 @@ const RegisterScreen = ( {location, history} ) => {
                     </Form.Label>
                     <Form.Control type ='email' placeholder='Email' value={email} onChange={(e)=> setEmail(e.target.value)}></Form.Control>
                 </Form.Group>
+                <Form.Group countrolId='company'>
+               <Form.Label>
+               貴社名
+               </Form.Label>
+               <Form.Control
+                       type ='text'
+                       placeholder='会社名'
+                       value={company}
+                       onChange={(e)=> setCompany(e.target.value)}>
+               </Form.Control>
+           </Form.Group>
+           <Form.Group countrolId='company'>
+               <Form.Label>
+               所属部署名
+               </Form.Label>
+               <Form.Control
+                       type ='text'
+                       placeholder='部署名'
+                       value={title}
+                       onChange={(e)=> setTitle(e.target.value)}>
+               </Form.Control>
+           </Form.Group>
+           <Form.Group countrolId='email'>
+               <Form.Label>
+               電話番号
+               </Form.Label>
+               <Form.Control
+                       type ='text'
+                       placeholder='電話番号'
+                       value={phoneNumber}
+                       onChange={(e)=> setPhoneNumber(e.target.value)}>
+               </Form.Control>
+             
+           </Form.Group>
 
-                
-            
-                <Form.Group>
-                <Form.Label>  プライバシーポリシー </Form.Label>
-                
-                <div key={`privacypolicy`} className="mb-3">
-                <PrivacyPolicy />
-                    <Form.Check
-                    label={`上記内容を理解し、プライバシーポリシーに同意します`}
-                    id={`privacypolicy`}
-                    
-                    />  
-                    </div>   
-                    </Form.Group>
+    
                
                 <div className='mt-3'> 
                 <Button type='submit' varient ='primary'>
@@ -87,7 +114,7 @@ const RegisterScreen = ( {location, history} ) => {
             </Form>
             
         </FormContainer>
-        
+        </>
     )
 }
 
