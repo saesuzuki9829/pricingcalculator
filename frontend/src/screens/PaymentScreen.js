@@ -8,13 +8,6 @@ import PrivacyPolicy from '../components/PrivacyPolicy'
 
 const PaymentScreen = ({ history }) => {
 
-    const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
-    
-     if(!userInfo) {
-        history.push('/login')
-    }
-
     const cart = useSelector((state) => state.cart)
     const { personalInfomation } = cart
     

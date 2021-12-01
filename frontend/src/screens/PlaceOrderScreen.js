@@ -9,12 +9,7 @@ import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 const PlaceOrderScreen = ({history}) => {
     
-    const userLogin = useSelector((state) => state.userLogin)
-    const { userInfo } = userLogin
-    
-    if(!userInfo) {
-      history.push('/login')
-    }
+ 
 
     const dispatch = useDispatch()
 

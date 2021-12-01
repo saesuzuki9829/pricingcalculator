@@ -60,7 +60,7 @@ export const logout = () => (dispatch) => {
     document.location.href = '/login'
 }
 
-export const register  =(name, email, title, phoneNumber, company ) => async (dispatch) =>{
+export const register  =(name, email, title, phoneNumber, company) => async (dispatch) =>{
     try{
         dispatch({
             type:USER_REGISTER_REQUEST

@@ -6,9 +6,9 @@ import User from '../models/userModel.js'
 // @router  POST/api/users/login
 // @access  Public
 const authUser =asyncHandler(async(req, res) => {
-    const { email } = req.body
+    const { _id } = req.body
 
-    const user = await User.findOne({email})
+    const user = await User.findOne({_id})
 
     if(user){
         res.json({
@@ -31,13 +31,6 @@ const authUser =asyncHandler(async(req, res) => {
 // @access  Public
 const registerUser =asyncHandler(async(req, res) => {
     const { name, email, title, company, phoneNumber} = req.body
-
-    const userExists = await User.findOne({email})
-
-    if(userExists){
-        res.status(400)
-        throw new Error('User already exists')
-    }
 
     const user = await User.create({
         name,
@@ -98,14 +91,14 @@ const updateUserProfile =asyncHandler(async(req, res) => {
         user.phoneNumber = req.body.phoneNumber || user.phoneNumber
 
         const updatedUser = await user.save()
-        res.status(201).json({
+        
+        res.json({
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
-            company:user.company,
-            phoneNumber:user.phoneNumber,
-            company: user.title
-        })
+            isAdmin: updatedUser.isAdmin,
+            
+          })
         
     } else{
         res.status(404)

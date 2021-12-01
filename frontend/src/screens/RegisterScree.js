@@ -13,30 +13,30 @@ const RegisterScreen = ({ location, history }) => {
     const [email, setEmail] = useState('')
     const [title, setTitle] = useState('')
     const [company, setCompany] = useState('')
-   const [phoneNumber, setPhoneNumber] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
 
+    const[message, setMessage] = useState(null)
 
-        const[message, setMessage] = useState(null)
+    const dispatch = useDispatch()
 
-        const dispatch = useDispatch()
+    const userRegister = useSelector((state) => state.userRegister)
+    const { loading, error, userInfo } = userRegister
+    
+    const redirect = location.search ? location.search.split('=')[1] : '/'
 
-        const userRegister = useSelector((state) => state.userRegister)
-        const { loading, error, userInfo } = userRegister
-      
-        const redirect = location.search ? location.search.split('=')[1] : '/'
+    useEffect(() => {
+        if (userInfo) {
+            history.push('/payment')
+        }
+        }, [history, userInfo])
 
-        useEffect(() => {
-            if (userInfo) {
-              history.push(redirect)
+        const submitHandler = (e) => {
+            e.preventDefault()
+            {
+                dispatch(register(name, email, title, phoneNumber, company));
+                setMessage(null)
             }
-          }, [history, userInfo, redirect])
-
-            const submitHandler = (e) => {
-                e.preventDefault()
-                {
-                    dispatch(register(name, email, title, phoneNumber, company));
-                    setMessage(null)
-            }
+            
         }
 
     return (

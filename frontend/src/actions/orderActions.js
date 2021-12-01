@@ -12,20 +12,16 @@ import {
 } from '../constants/orderConstants'
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 
-export const createOrder = (order) => async (dispatch, getState) =>{
+export const createOrder = (order) => async (dispatch) =>{
   try{
       dispatch({
           type: ORDER_CREATE_REQUEST,
       })
 
-      const {
-        userLogin: { userInfo }, 
-    } = getState()
-      
       const config ={
           headers: {
               'Content-Type': 'application/json',
-              Authorization: `Bearer ${userInfo.token}`
+            
           }
       }
       const { data } = await axios.post(
@@ -65,14 +61,10 @@ export const getOrderDetails = (id) => async (dispatch, getState) =>{
           userLogin: { userInfo }, 
       } = getState()
         
-        const config ={
-            headers: {
-                Authorization: `Bearer ${userInfo.token}`
-            }
-        }
+     
         const { data } = await axios.get(
             `/api/orders/${id}`,
-            config
+
         )
         
         dispatch({
@@ -104,7 +96,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) =>{
         const config ={
             headers: {
                 'content-Type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
+                
             }
         }
         const { data } = await axios.put(
