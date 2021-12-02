@@ -7,7 +7,7 @@ const CheckoutSteps = ({ setp1, step2, step3, step4, step5}) => {
         <Nav ClassName = 'justify-content-center mb-5'>
             <Nav.Item>
             {setp1 ? (
-                <LinkContainer to='/home'>
+                <LinkContainer to='/'>
                     <Nav.Link>1. O2センサー選択</Nav.Link>
                 </LinkContainer>
             ):(

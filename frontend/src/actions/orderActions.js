@@ -57,9 +57,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) =>{
             type: ORDER_DETAILS_REQUEST,
         })
   
-        const {
-          userLogin: { userInfo }, 
-      } = getState()
+      
         
      
         const { data } = await axios.get(
@@ -89,10 +87,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) =>{
             type: ORDER_PAY_REQUEST,
         })
   
-        const {
-          userLogin: { userInfo }, 
-      } = getState()
-        
+      
         const config ={
             headers: {
                 'content-Type': 'application/json',

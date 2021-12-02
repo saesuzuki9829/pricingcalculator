@@ -29,6 +29,10 @@ const OrderScreen = ({history, match}) => {
             order.itemsPrice = addDecimals(
             order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
             )
+            order.itemsQty = 
+                order.orderItems.reduce((acc, item) => acc +  item.qty,0)
+            order.instlationFee=
+                order.itemsQty *5000
             }else
         { history.push('/placeorder') }
     }
@@ -79,8 +83,13 @@ const OrderScreen = ({history, match}) => {
                                             </Col>
 
                                             <Col md={4}>
-                                                {item.qty} x {item.price}=  {item.qty * item.price} 円（税別）
+                                                {item.qty} 個 x {item.price} 円 = {item.qty * item.price} 円（税別）
                                             </Col>
+                                        </Row>
+                                        <Row>
+
+                                        以下のキッティング作業を含む​：SORACOM SIM設定（バイナリパーサー、Funnel機能）​・動作確認​
+                             
                                         </Row>
                                     </ListGroup.Item>
                                 ))}
@@ -96,14 +105,14 @@ const OrderScreen = ({history, match}) => {
                         
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>CO2センサー</Col>
+                                    <Col>CO2センサー合計金額</Col>
                                     <Col>{order.itemsPrice} 円（税別）</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
                                     <Col>初期設定費用</Col>
-                                    <Col>{order.shippingPrice} 円（税別）</Col>
+                                    <Col>{order.itemsQty} 個 × 5000 円 = {order.instlationFee} 円（税別）</Col>
                                 </Row>
                             </ListGroup.Item>
                         

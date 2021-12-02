@@ -25,13 +25,23 @@ const PlaceOrderScreen = ({history}) => {
       (acc, item) => acc+ item.price * item.qty, 
       0
     ))
+
+    cart.itemsQty = 
+      cart.cartItems.reduce(
+      (acc, item) => acc+  item.qty, 
+      0
+    )
+
+    
+    
     cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
-    cart.taxPrice = addDecimals(Number((0.2 * cart.itemsPrice).toFixed(0)))
+    cart.taxPrice = addDecimals(Number((0.1 * cart.itemsPrice).toFixed(0)))
+    cart.instlationFee=cart.itemsQty *5000
     cart.totalPrice = (
       Number(cart.itemsPrice) + 
-      Number(cart.shippingPrice) + 
-      Number(cart.taxPrice)
+      Number(cart.instlationFee) 
     ).toFixed(0)
+
 
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
@@ -54,6 +64,7 @@ const PlaceOrderScreen = ({history}) => {
         shippingPrice: cart.shippingPrice,
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
+        itemsQty:cart.itemsQty
       }))
 
     }
@@ -97,14 +108,6 @@ const PlaceOrderScreen = ({history}) => {
                          
                         </ListGroup.Item>
 
-                        <ListGroup.Item>
-                            <h2>Payment Method</h2>
-                            <p>
-                                <strong>Method:</strong>
-                                {' '}{cart.paymentMethod}
-                            </p>
-
-                        </ListGroup.Item>
 
                         <ListGroup.Item>
                           <h2>CO2センサー</h2>
@@ -131,7 +134,7 @@ const PlaceOrderScreen = ({history}) => {
                                       </Col>
 
                                       <Col md={4}>
-                                        {item.qty} x {item.price} 円（税込） = {item.qty * item.price} 円（税込）
+                                        {item.qty}個 
                                       </Col>
                                     </Row>
                                   </ListGroup.Item>
@@ -148,33 +151,7 @@ const PlaceOrderScreen = ({history}) => {
                 <Col md={4}>
           <Card>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
-                <h2>概算お見積内訳</h2>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>CO2センサー</Col>
-                  <Col>¥{cart.itemsPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
-                </Row>
-              </ListGroup.Item>
+              
               <ListGroup.Item>
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>

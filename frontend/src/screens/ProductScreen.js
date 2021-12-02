@@ -25,7 +25,7 @@ const ProductScreen = ({ history, match }) => {
 return (
     <>
     
-    <Link className ='btn btn-light my-3' to='/home'>
+    <Link className ='btn btn-light my-3' to='/'>
         戻る
     </Link>
     {loading ? <Loader /> : error ? <Message variant ='danger'> {error} </Message>:(
@@ -46,14 +46,7 @@ return (
                 <Card style={{ width: '18rem' }} >
                     <ListGroup variant='flush'>
                         
-                        <ListGroup.Item>
-                                <Row>
-                                    <Col>在庫:</Col>
-                                    <Col>
-                                    {product.countInStock > 0 ? '在庫あり' : '在庫なし'}
-                                    </Col>
-                                </Row>
-                        </ListGroup.Item>
+                        
 
                     {product.countInStock > 0 && (
                         <ListGroup.Item>
@@ -64,9 +57,9 @@ return (
                                         as ='select' 
                                         value ={qty} 
                                         onChange={(e) =>setQty(e.target.value)}>{
-                
+                                        
                                         [...Array(product.countInStock).keys()].map((x)=> (
-                                            <option key={x + 1} value = {x+1}>
+                                            <option key={x +1} value = {x +1}>
                                                 {x+1}</option>
                                         ))} 
                                     </Form.Control>
@@ -89,6 +82,9 @@ return (
 
                     </ListGroup>
                 </Card>
+            </Col>
+            <Col>
+        
             </Col>
           
           

@@ -6,13 +6,11 @@ import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from './screens/CartScreen'
-import LoginScreen from './screens/LoginScreen'
-import RegisterScreen from './screens/RegisterScree'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
-import LandingPageScreen from './screens/LandingPageScreen'
+
 const App = () => {
   return (
     <Router>
@@ -24,12 +22,9 @@ const App = () => {
         <Route path='/placeorder' component={PlaceOrderScreen} exact/>
         <Route path='/payment' component={PaymentScreen} exact/>
         <Route path='/shipping' component={ShippingScreen} exact/>
-        <Route path='/login' component={LoginScreen} exact/>
-        <Route path='/register' component={RegisterScreen} exact/>
         <Route path='/product/:id' component={ProductScreen} exact/>
         <Route path='/cart/:id?' component={CartScreen}/>
-        <Route path='/home' component={HomeScreen} exact/>
-        <Route path='/' component={LandingPageScreen} exact/>
+        <Route path='/' component={HomeScreen} exact/>
         
       </Container>
     </main>

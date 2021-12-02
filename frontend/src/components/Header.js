@@ -1,20 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer} from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap'
-import { logout } from '../actions/userActions'
-
 
 
 
 const Header = () => {
     const dispatch =useDispatch()
-    const userLogin = useSelector(state => state.userLogin)
-    const { userInfo } = userLogin
+    const [click, setClick] = useState(false);
 
-    const logoutHandler= () => {
-      dispatch(logout())
-    }
+    const handleClick = () => setClick(!click);
 
     return (
         <header><Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
@@ -25,19 +21,14 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className='ms-auto'>
-            <Button variant='primary' size="sm">資料ダウンロード</Button> 
-                {userInfo ? (
-                    <NavDropdown title ={userInfo.name} id='username'>
- 
-                        <NavDropdown.Item onClick ={logoutHandler}>ログアウト</NavDropdown.Item>
-                          </NavDropdown>
-                ) : <LinkContainer to='/login'>
-                <Nav.Link><i className='fas fa-user'></i>ログイン</Nav.Link>
-            </LinkContainer>}
+       
+            <Button variant='primary' size="sm" onClick={()=> handleClick()} width={click ? 40 : 100} height={click ? 40 : 100} fill='currentColor' >資料ダウンロード</Button> 
+
                 
             </Nav>
           </Navbar.Collapse>
         </Container>
+ 
       </Navbar></header>
     )
 }

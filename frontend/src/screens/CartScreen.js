@@ -51,7 +51,7 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={3}>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>{item.price} 円 (税込)</Col>
+                  <Col md={3}>{item.brand}</Col>
                   <Col md={2}>
                     <Form.Control
                       as='select'
@@ -90,11 +90,9 @@ const CartScreen = ({ match, location, history }) => {
             <ListGroup.Item>
               <h2>
               数量：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                点
+                個
               </h2>
-              {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(0)} 円 (税込)
+              
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
@@ -110,6 +108,9 @@ const CartScreen = ({ match, location, history }) => {
         </Card>
       </Col>
     </Row>
+    <Link className ='btn btn-light my-3' to='/'>
+        戻る
+    </Link>
     </>
   )
 }
