@@ -1,70 +1,37 @@
 const products = [
-    {
-      name: 'ラトックシステム「RS-LTECO2」',
-      image: '/images/latoc.png',
-      description:
-        '2021年9月7日現在、弊社で動作環境ができているのは、ソラコム社の通信IoTプラットフォーム「SORACOM」が提供するクラウド連携サービス「SORACOM Funnel」機能を使ったものとなります。​従いまして現時点においてはソラコム社のSIM付モデルでのご利用を推奨します。',
-      brand: 'ラトックシステム株式会社',
-      category: 'CO2センサー',
-      price: 23000,
-      countInStock: 100,
-   
-    },
-    {
-      name: 'iPhone 11 Pro 256GB Memory',
-      image: '/images/phone.jpg',
-      description:
-        'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-      brand: 'Apple',
-      category: 'Electronics',
-      price: 599.99,
-      countInStock: 10,
-  
-    },
-    {
-      name: 'Cannon EOS 80D DSLR Camera',
-      image: '/images/camera.jpg',
-      description:
-        'Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
-      brand: 'Cannon',
-      category: 'Electronics',
-      price: 929.99,
-      countInStock: 0,
-  
-    },
-    {
-      name: 'Sony Playstation 4 Pro White Version',
-      image: '/images/playstation.jpg',
-      description:
-        'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
-      brand: 'Sony',
-      category: 'Electronics',
-      price: 399.99,
-      countInStock: 10,
-   
-    },
-    {
-      name: 'Logitech G-Series Gaming Mouse',
-      image: '/images/mouse.jpg',
-      description:
-        'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-      brand: 'Logitech',
-      category: 'Electronics',
-      price: 49.99,
-      countInStock: 7,
-    
-    },
-    {
-      name: 'Amazon Echo Dot 3rd Generation',
-      image: '/images/alexa.jpg',
-      description:
-        'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-      brand: 'Amazon',
-      category: 'Electronics',
-      price: 29.99,
-      countInStock: 0,
-  
-    },
-  ]
-  
-  export default products
+  {
+    name: 'RS-LTECO2',
+    image:'/images/latoc.png',
+    description:
+      '2021年9月7日現在、弊社で動作環境ができているのは、ソラコム社の通信IoTプラットフォーム「SORACOM」が提供するクラウド連携サービス「SORACOM Funnel」機能を使ったものとなります。​従いまして現時点においてはソラコム社のSIM付モデルでのご利用を推奨します。',
+    brand: 'ラトックシステム株式会社',
+    category: 'CO2センサー',
+    price: 23000,
+    countInStock: 100,
+ 
+  },
+  {
+    name: 'まもセンサーAir',
+    image: '/images/mamosensor.png',
+    description:
+      '○ 本体サイズ:100×57×25mm​　○ 本体重量：約78g（乾電池含まず）​○ 通信方式:LTE-M(Cat.M1)​　○ 通信可能エリア:SoftBank LTE通信エリア​　○ 動作環境：​温度：0～50℃、​湿度：95%RH以下（結露無きこと）​　○ LED表示：CO2レベル表示、通信状態表示​　○ データ送信頻度:5分​　○ 電源：USB micro-B　5.0V/1A または単三形アルカリ電池×3本（※アルカリ乾電池使用時は連続使用時間10時間程）​　○ 使用環境：屋内（※防水仕様ではない）​　○ 付属品:取扱説明書・保証書×1​　○ 保証:購入日から1年間​　○ 製造国:中国',
+    brand: '株式会社IoT Bank',
+    category: 'CO2センサー',
+    price: 23000,
+    countInStock: 100,
+
+  },
+  {
+    name: 'CD-1000',
+    image: '/images/gastec.png',
+    description:
+      '2021年9月7日現在、弊社で動作環境ができているのは、京セラ社GPSトラッカー経由でソラコム社の通信IoTプラットフォーム「SORACOM」が提供するクラウド連携サービス「SORACOM Funnel」機能を使ったものとなります。​従いまして現時点においては左記の構成でのご利用を推奨します。',
+    brand: '株式会社ガステック',
+    category: 'CO2センサー',
+    price: 23000,
+    countInStock: 100,
+  },
+
+]
+
+export default products
