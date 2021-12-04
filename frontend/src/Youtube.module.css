@@ -1,0 +1,12 @@
+.youtube {
+  position: relative;
+  width: 40vw;
+  height: 40vh;
+}
+.iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40vw;
+  height: 40vh;
+}

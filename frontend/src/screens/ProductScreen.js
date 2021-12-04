@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button, Form, ProgressBar } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Card, Button, Form, Carousel, Tab, Tabs} from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProductDetails } from '../actions/productActions'
-import CheckoutSteps from '../components/CheckoutSteps'
+import YouTube from 'react-youtube'
+import style from '../Youtube.module.css'
+
+const Container = styled.div`
+padding-bottom: 1rem;
+`
+
 
 const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
@@ -22,16 +29,35 @@ const ProductScreen = ({ history, match }) => {
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
       }
+
+  
 return (
     <>
-    
-    <Link className ='btn btn-light my-3' to='/'>
-        戻る
-    </Link>
     {loading ? <Loader /> : error ? <Message variant ='danger'> {error} </Message>:(
         <Row>
             <Col   Col md={6}>
-                <Image src={product.image} alt={product.name} fluid/>
+            <Carousel variant='dark'> 
+            <Carousel.Item>
+            <Image 
+            className= 'd-block w-100 h-100'
+            src={product.image} alt={product.name} fluid/>
+
+            </Carousel.Item>
+            <Carousel.Item>
+            <Image 
+            className= 'd-block w-100 h-100'
+            src={product.secondImage} alt={product.name} fluid/>
+
+            </Carousel.Item>
+            <Carousel.Item>
+            <Image 
+            className= 'd-block w-100 h-100'
+            src={product.thirdImage} alt={product.name} fluid/>
+
+            </Carousel.Item>
+           
+            </Carousel>
+          
             </Col>
             <Col md={6}>
                 <ListGroup variant='flush'>
@@ -39,10 +65,10 @@ return (
                         <h3>{product.name}</h3>
                     </ListGroup.Item>
                   
-                    <ListGroup.Item>会社名: {product.brand} </ListGroup.Item>
-                    <ListGroup.Item>詳細: {product.description}</ListGroup.Item>
-                </ListGroup>
+                    <ListGroup.Item>メーカー名: {product.brand} 
+                    </ListGroup.Item>
 
+                <Container>
                 <Card style={{ width: '18rem' }} >
                     <ListGroup variant='flush'>
                         
@@ -64,12 +90,12 @@ return (
                                         ))} 
                                     </Form.Control>
                                 </Col>
-                            </Row>
+                                </Row>
                       </ListGroup.Item>
                     )}
 
-                        <ListGroup.Item >
-                        <div className='mt-3'> 
+                        <ListGroup.Item className='ms-auto'>
+                        <div > 
                             <Button 
                             onClick={addToCartHandler}
                             className='btn-block'
@@ -79,9 +105,31 @@ return (
                                 追加                            </Button>
                             </div>
                         </ListGroup.Item>
-
                     </ListGroup>
+                    
                 </Card>
+                </Container>
+                    <Tabs defaultActiveKey="function" id="uncontrolled-tab-example" className="mb-3">
+                    <Tab eventKey="function" title="機能">
+                    {product.description}
+                    </Tab>
+                    <Tab eventKey="shiyo" title="仕様">
+                    <Image 
+                                className= 'd-block w-100 h-100'
+                                src={product.shiyoImage} alt={product.name} fluid/>
+
+                    </Tab>
+                    <Tab eventKey="network" title="通信方法">
+                    {product.network}
+                    </Tab>
+                    
+                    <Tab eventKey="video" title="動画">
+                    <YouTube videoId={product.youtubeVideoId} className={style.iframe} containerClassName={style.youtube} />
+                    </Tab>
+                    </Tabs>
+                    
+                </ListGroup>
+               
             </Col>
             <Col>
         
@@ -90,6 +138,11 @@ return (
           
         </Row>
     )}
+
+
+<Link className ='btn btn-light my-3' to='/'>
+        戻る
+    </Link>
     </>
 )
 }

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Button} from 'react-bootstrap'
+import { Row, Col, Button, Alert} from 'react-bootstrap'
 import styled, { keyframes } from 'styled-components'
 import Product from '../components/Product'
 import Message from '../components/Message'
@@ -51,6 +51,7 @@ const Container = styled.div`
 padding: 2rem;
 `
 
+
 const HomeScreen = () => {
 
     const dispatch = useDispatch()
@@ -62,25 +63,48 @@ const HomeScreen = () => {
         dispatch(listProducts())
     }, [dispatch])
 
+  
+    
+
     return (
         <>
          <section id='main'>
-      <Container>
+         <Container>
          <Center>
             <h1>CO2濃度測定による新型コロナウイルス感染症対策ソリューション</h1>
            </Center>
-           </Container>
-          </section>
-        <section id='example'>
-        <Container>
+        </Container>
+  
+         <Container>
         <Scroll to="co2Sensor" smooth={false}>
             <Pulse><Button variant='success' size="lg">Webで簡単！オンライン見積り</Button></Pulse>
                     </Scroll>
                     </Container>
-                    <Container>
-                 <Button variant='primary' size="lg">資料ダウンロード</Button> 
-             </Container>
+                    
+  
+      <Container>
+      <Scroll to="downloadForm" smooth={false}>
+      <Button variant='primary' size="lg">資料ダウンロード</Button>
+      </Scroll>
+    </Container>
+        <Container>
+            <h3>
+            新型コロナウイルスの感染拡大予防のためには、 「換気の悪い密閉空間」を避けることが重要です。
+            SensorCorpus IC はCO2濃度検知サービスによりその対策を支援するサービスを提供しています。​
+            
+            </h3>
+        </Container>
+        <Container>
+            <Alert variant='warning'>
+                <h1>CO2濃度センサー管理できていますか？</h1>
+            </Alert>
+        </Container>
+  
             </section>
+            <senction id= 'downloadForm'>
+
+               
+            </senction>
         <section id="co2Sensor">
         <Container>
         <div className="d-grid gap-2">
@@ -105,7 +129,9 @@ const HomeScreen = () => {
             )
         }
                 </Container>
+              
             </section>
+            
             </>
     )
 }

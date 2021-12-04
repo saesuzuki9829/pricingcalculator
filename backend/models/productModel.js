@@ -35,7 +35,34 @@ const productSchema = mongoose.Schema(
         type: Number,
         required:true,
         default:0
-    }
+    },
+    secondImage:{
+        type: String,
+        required:true,
+   
+    },
+    thirdImage:{
+        type: String,
+        required:true,
+   
+    },
+    shiyoImage:{
+        type: String,
+        required:true,
+   
+    },
+    network:{
+        type: String,
+        required:true,
+    },
+    url:{
+        type: String,
+        required:true,
+    },
+    youtubeVideoId:{
+        type: String,
+   
+    },
 },{
     timestamp:true
 
