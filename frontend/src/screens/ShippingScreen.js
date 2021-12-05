@@ -21,11 +21,19 @@ const ShippingScreen = ({ history }) => {
 
 
     const dispatch = useDispatch()
+    const [validated, setValidated] = useState(false);
 
     const submitHandler = (e) => {
         e.preventDefault()
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) 
+        {
+            e.preventDefault();
+            e.stopPropagation();
+          }else{
         dispatch(savePersonalInformation({name, email, company, title, phoneNumber}))
         history.push('/payment')
+        }
     }
     return (
 
@@ -43,6 +51,7 @@ const ShippingScreen = ({ history }) => {
                         ご担当者様お名前
                 </Form.Label>
                 <Form.Control 
+                        required
                         type ='text' 
                         placeholder='お名前' 
                         value={name} 
@@ -54,7 +63,8 @@ const ShippingScreen = ({ history }) => {
                 Email
                 </Form.Label>
                 <Form.Control 
-                        type ='text' 
+                        required
+                        type ='email' 
                         placeholder='Email' 
                         value={email} 
                         onChange={(e)=> setEmail(e.target.value)}>
@@ -66,6 +76,7 @@ const ShippingScreen = ({ history }) => {
                 貴社名
                 </Form.Label>
                 <Form.Control 
+                        required
                         type ='text' 
                         placeholder='会社名' 
                         value={company} 
@@ -77,6 +88,7 @@ const ShippingScreen = ({ history }) => {
                 所属部署名
                 </Form.Label>
                 <Form.Control 
+                        required
                         type ='text' 
                         placeholder='部署名' 
                         value={title} 
@@ -88,6 +100,7 @@ const ShippingScreen = ({ history }) => {
                 電話番号
                 </Form.Label>
                 <Form.Control 
+                        required
                         type ='text' 
                         placeholder='電話番号' 
                         value={phoneNumber} 

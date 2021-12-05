@@ -87,9 +87,7 @@ const OrderScreen = ({history, match}) => {
                                             </Col>
                                         </Row>
                                         <Row>
-
-                                        以下のキッティング作業を含む​：SORACOM SIM設定（バイナリパーサー、Funnel機能）​・動作確認​
-                             
+                                        通信設定、センサーの登録、その他初期設定などキッティング作業を含む​
                                         </Row>
                                     </ListGroup.Item>
                                 ))}
