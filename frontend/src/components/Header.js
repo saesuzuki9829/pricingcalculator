@@ -12,8 +12,9 @@ const Header = () => {
     const handleClick = () => setClick(!click);
 
     return (
-        <header>
+        <header class="sticky-top">
       <Navbars />
+      
       </header>
     )
 }

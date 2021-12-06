@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const FunctionContainer =styled.div`
     color:#fff;
-    background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#010606')};
+    background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#282828')};
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     padding: 50px 0;
@@ -12,7 +12,7 @@ export const FunctionContainer =styled.div`
 export const FunctionWrapper = styled.div`
     display: orid;
     z-index: 1;
-    height: 400px;
+    height: 450px;
     width: 100%;
     max-width: 1100px;
     margin-right: auto;
@@ -62,7 +62,6 @@ margin-bottom:16px;
 `
 
 export const Heading = styled.h1`
-color: #000;
 margin^bottom: 24px;
 font-size: 48px;
 line-height:1.1;
@@ -77,9 +76,9 @@ color: ${({lightText}) => (lightText ? '#f7f8fa': '#010606')};
 export const Subtitle = styled.p`
     max-width:440px;
     margin-bottom: 35px;
-    font-size;
+    font-size: 15px;
     line-height: 24px;
-    color: ${({darkText}) => (darkText ? '#fff' :'#010606')};
+    color: ${({lightText}) => (lightText ? '#f7f8fa': '#010606')};
 `
 
 export const BtnWrap = styled.div`

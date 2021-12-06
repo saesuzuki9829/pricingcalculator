@@ -39,7 +39,7 @@ const FunctionSection = ({
                         <Heading lightText={lightText}>
                            {headline}
                         </Heading>
-                        <Subtitle darkText={darkText}>
+                        <Subtitle lightText={lightText}>
                             {description}
                         </Subtitle>
                         <BtnWrap>

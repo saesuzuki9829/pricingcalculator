@@ -20,7 +20,7 @@ margin-left:1.5rem;
 const Navbars = () => {
     return (
         <>
-            <Navbar  bg="light" expand='lg' collapseOnSelect>
+            <Navbar sticky="top" bg="light" expand='lg' collapseOnSelect>
                 <Container>
                 <LinkContainer to='/'>
                 <Navbar.Brand>
@@ -51,17 +51,12 @@ const Navbars = () => {
                             </Nav.Link>
                         </Scroll>
                         <BtnContainer >
-                    <Link to="/download" >
-                
-               <Button variant='primary' >資料ダウンロード</Button>
-                        
-                        </Link>
-                        </BtnContainer>
+                    
                             <Scroll to="co2Sensor" smooth={false}>
                      
                                <Button variant='warning' >オンライン見積</Button>
                 
-                            </Scroll>
+                            </Scroll> </BtnContainer>
                             
                             </Nav>
                             

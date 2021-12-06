@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import {MdKeyboardArrowRight, MdArrowForward} from 'react-icons/md'
+import {MdCoronavirus} from 'react-icons/md'
 
 const pulse = keyframes`
 0% {
@@ -35,26 +35,26 @@ justify-content: center;
 align-items: center;
 margin-left: calc(50% - 50vw);
 margin-right: calc(50% - 50vw);
-height: 410px;
+height: 430px;
 position: relative;
 z-index:1;
 
 @media (max-width: 1482px){
-    height: 430px;
+    height: 450px;
 }
 @media (max-width: 930px){
-    height: 470px;
+    height: 490px;
 }
 @media (max-width: 700px){
-    height: 510px;
+    height: 530px;
 }
 
 @media (max-width: 646px){
-    height: 410px;
+    height: 430px;
 }
 
 @media (max-width: 425px){
-    height: 360px;
+    height: 380px;
 }
 
 `
@@ -81,7 +81,7 @@ export const TopBtnWrapper = styled.div`
 margin-top: 10px;
 display: flex;
 flex-direction: column;
-margin-left:20vw;
+align-items: center;
 `
 
 export const TopH1 = styled.h1`
@@ -108,6 +108,7 @@ text-align: center;
 margin-top:10px;
 padding: 1rem 2rem;
 
+
 @media (max-width: 425px){
     font-size: 30px;
     padding: 1rem 1rem;
@@ -133,13 +134,11 @@ border-bottom: 2px solid #efb73e;
 `
 
 export const TopP3 = styled.p`
-color:#000;
+color:#fff;
 font-size:17px;
 padding: 0.2em 0.5em;
-background: #f4f4f4;
-border-left: solid 5px  #efb73e;
-border-bottom: solid 3px #d7d7d7;
-
+border-radius: 5px;
+background:linear-gradient(transparent 60%, rgba(239, 183, 62, 0.6) 60%);
 @media (max-width: 425px){
     font-size: 14px;
 }
@@ -156,14 +155,39 @@ border-bottom: solid 3px #d7d7d7;
 
 export const TopP2 = styled.p`
 margin-top:24px;
-color:#fff;
 font-size:19px;
 text-align:center;
 max-width:600px;
-font-family: 'Zen Kurenaido', sans-serif;
+
+position: relative;
+background: #dee2e6;
+padding: 5px 5px 5px 15px;
+color: #000;
+border-radius: 0px 10px 10px 0px;
+}
 
 @media (max-width: 425px){
     font-size: 15px;
 }
 
+`
+
+export const Covid =styled(MdCoronavirus)`
+font-size:20px;
+color: #38b44a;
+    display: inline-block;
+  line-height: 40px;
+  position: absolute;
+  padding: 0em;
+  background: #dee2e6  ;
+  width: 40px;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  left: -1.35em;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border: solid 3px white; 
+  border-radius: 50%;
 `

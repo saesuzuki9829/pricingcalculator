@@ -27,6 +27,7 @@ const App = () => {
         <Route path='/cart/:id?' component={CartScreen}/>
         <Route path='/' component={HomeScreen} exact/>
         <Route path='/download' component={DownloadScreen} exact/>
+        
       </Container>
     </main>
     </Container>

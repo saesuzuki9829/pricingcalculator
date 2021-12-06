@@ -13,7 +13,6 @@ const Border =styled.div  `
   background: #efb73e;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-
 `
 
 const H1 = styled.h1`
@@ -97,7 +96,7 @@ const Co2SensorSection = () => {
 
     return (
       <section id="co2Sensor">
-        <Container>
+       
              <div className="d-grid gap-2">
   <Border>
 <H1>Webで簡単！オンライン見積り</H1>
@@ -120,7 +119,7 @@ const Co2SensorSection = () => {
               </Row>
             )
         }
-        </Container>
+
         </section>
     )
 }
