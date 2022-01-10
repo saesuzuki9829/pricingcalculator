@@ -6,6 +6,14 @@ import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { Container } from 'react-bootstrap'
+import Header from '../components/HeaderOther'
+import styled from 'styled-components'
+
+const Div = styled.div`
+padding: 0.5rem;
+margin: 0.5rem;
+`
 
 const PlaceOrderScreen = ({history}) => {
     
@@ -36,7 +44,7 @@ const PlaceOrderScreen = ({history}) => {
     
     cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
     cart.taxPrice = addDecimals(Number((0.1 * cart.itemsPrice).toFixed(0)))
-    cart.instlationFee=cart.itemsQty *5000
+    cart.instlationFee=cart.itemsQty *5
     cart.totalPrice = (
       Number(cart.itemsPrice) + 
       Number(cart.instlationFee) 
@@ -70,18 +78,29 @@ const PlaceOrderScreen = ({history}) => {
     }
 
     return (
-      <> 
+      <>
+      <Header />
+      <Container> 
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <CheckoutSteps step4 />
               </div>
               <ProgressBar now={70} />
+              
                 <Row>
                   <Col md={8}>
+                  <Div>
                     <ListGroup varioant='flush'>
                         <ListGroup.Item>
-                            <h2>お客様情報</h2>
+                            <h2>Personal Infomation</h2>
+
+                            <p> <strong>Title:</strong>
+                            {' '}
+                            {cart.personalInfomation.title}
+                             
+                              </p>
                             <p>
-                              <strong>担当者様お名前:</strong>
+                            
+                              <strong>Name:</strong>
                               {' '}
                               {cart.personalInfomation.name}
                             </p>
@@ -90,17 +109,13 @@ const PlaceOrderScreen = ({history}) => {
                             {cart.personalInfomation.email}
                              
                               </p>
-                              <p> <strong>貴社名:</strong>
+                              <p> <strong>Company Name:</strong>
                             {' '}
                             {cart.personalInfomation.company}
                              
                               </p>
-                              <p> <strong>所属部署名:</strong>
-                            {' '}
-                            {cart.personalInfomation.title}
-                             
-                              </p>
-                              <p> <strong>電話番号:</strong>
+                            
+                              <p> <strong>Phone Number:</strong>
                             {' '}
                             {cart.personalInfomation.phoneNumber}
                              
@@ -110,9 +125,9 @@ const PlaceOrderScreen = ({history}) => {
 
 
                         <ListGroup.Item>
-                          <h2>CO2センサー</h2>
+                          <h2>Products</h2>
                             {cart.cartItems.length === 0 ? ( 
-                              <Message> 商品が選択されていません </Message>
+                              <Message> No product is selected.</Message>
                             ):(
                               <ListGroup variant='flush'>
                                 {cart.cartItems.map((item, index) => (
@@ -134,7 +149,7 @@ const PlaceOrderScreen = ({history}) => {
                                       </Col>
 
                                       <Col md={4}>
-                                        {item.qty}個 
+                                        {item.qty}
                                       </Col>
                                     </Row>
                                   </ListGroup.Item>
@@ -142,13 +157,16 @@ const PlaceOrderScreen = ({history}) => {
                                             
                                         
                               </ListGroup>
+                              
                             )}
                     </ListGroup.Item>
 
                     </ListGroup>
+                    </Div>
                 </Col>
 
                 <Col md={4}>
+                <Div>
           <Card>
             <ListGroup variant='flush'>
               
@@ -156,21 +174,21 @@ const PlaceOrderScreen = ({history}) => {
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
-      
                 <Button
                   type='button'
                   className='btn-block'
                   disabled={cart.cartItems === 0}
                   onClick={placeOrderHandler}
                 >
-                  概算お見積を出力
+                 Output
                 </Button>
-                
               </ListGroup.Item>
             </ListGroup>
           </Card>
+          </Div>
           </Col>
         </Row>
+        </Container>
         </>
     )
 }

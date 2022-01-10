@@ -4,14 +4,14 @@ import {
     TopBtnWrapper, 
     TopContent,
     TopH1,
-    TopP1,
     TopP3,
     TopP2,
     TopH2,
     Pulse,
-    Covid } from './TopElemnts'
+    Light } from './TopElemnts'
 import {Button} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link as Scroll } from 'react-scroll'
+import {motion} from 'framer-motion'
 
 const TopSection = () => {
     const [hover, setHover] =useState(false)
@@ -19,34 +19,48 @@ const TopSection = () => {
         setHover(!hover)
     }
     return (
+        <>
+           <motion.div
+                initial={{
+                    y:-100,
+                    transition: { type:'spring', duration: 1.5, delay:1}
+                }}
+                animate={{
+                    y:0,
+                    transition: { type:'spring', duration: 1.5, delay:1}
+                }}
+                
+                >
         <TopContainer>
+     
             <TopContent>
-                <TopP1>
-                    電気通信大学石垣陽特任准教授監修
-                </TopP1>
-            
+         
+            <TopP2><Light />Easy! Fast! </TopP2>
                 <TopH1>
-                    SensorCorpus IC
+                This is a demo site.
                 </TopH1>
             
-                <TopH2>その感染症対策、本当に安全ですか？</TopH2>
-                <TopP2><Covid />換気・密集対策！</TopP2>
+                <TopH2>Pricing Calculator</TopH2>
+                
                
                 <TopBtnWrapper>
-                    <Link to='/download'>
+                    <Scroll to='co2sensor' smooth={false}>
                         <Pulse>
-                    <Button variant='primary' 
+                    <Button variant='warning' 
                         onMouseEnter={onHover}
                         onMouserLeave={onHover}
                         primary='true'
                         dark='true'>
-                  資料ダウンロード
+                            Click Here!
                     </Button>
                     </Pulse>
-                    </Link>
+                    </Scroll>
                 </TopBtnWrapper>
             </TopContent>
+           
         </TopContainer>
+        </motion.div>
+        </>
     )
 }
 

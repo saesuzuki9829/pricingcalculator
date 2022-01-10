@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import {Button, Image} from 'react-bootstrap'
 import {
     FunctionContainer,
@@ -13,6 +13,10 @@ import {
     Column2,
 }
 from './FunctionElements'
+import { useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Link as Scroll } from 'react-scroll'
+
 
 const FunctionSection = ({
     lightBg, 
@@ -26,8 +30,20 @@ const FunctionSection = ({
     buttonLabel,
     variant
 }) => {
+
+    const controls = useAnimation();
+    const [ref, inView] = useInView()
+
+    useEffect(() => {
+        if (inView) {
+          controls.start("visible");
+        }
+      }, [controls, inView]);
+
+
     return (
         <>
+     
             <FunctionContainer lightBg={lightBg} id ={id}>
                 <FunctionWrapper>
                     <FunctionRow imgStart={imgStart}>
@@ -42,17 +58,20 @@ const FunctionSection = ({
                         <Subtitle lightText={lightText}>
                             {description}
                         </Subtitle>
+                        <Scroll to="co2sensor">
                         <BtnWrap>
                             <Button variant={variant}>
-                                {buttonLabel}
+                                {buttonLabel}               
                             </Button>
                         </BtnWrap>
+                        </Scroll>
                     </TextWrapper>
                     </Column1>
                    
                     </FunctionRow>
                 </FunctionWrapper>
             </FunctionContainer>
+
         </>
     )
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer} from 'react-router-bootstrap'
 import {  Nav, Container, NavDropdown, Button } from 'react-bootstrap'
-import Navbars from './Navbars/Navbars'
+import NavbarHome from './Navbars/NavbarHome'
 
 const Header = () => {
     const dispatch =useDispatch()
@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <header class="sticky-top">
-      <Navbars />
+      <NavbarHome />
       
       </header>
     )

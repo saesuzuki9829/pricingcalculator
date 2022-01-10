@@ -5,6 +5,14 @@ import { Row, Col, ListGroup, Image, Form, Button, Card , ProgressBar} from 'rea
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import CheckoutSteps from '../components/CheckoutSteps'
+import { Container } from 'react-bootstrap'
+import Header from '../components/HeaderOther'
+import styled from 'styled-components'
+
+const Div = styled.div`
+padding: 0.5rem;
+margin: 0.5rem;
+`
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.id
@@ -32,13 +40,15 @@ const CartScreen = ({ match, location, history }) => {
 
   return (
     <>
+    <Header />
+    <Container>
 
     <Row>
       <Col md={8}>
-        <h1>CO2センサー</h1>
+        <h1>Products</h1>
         {cartItems.length === 0 ? (
           <Message>
-            商品が選択されていません <Link to='/'>戻る</Link>
+            No product is selected. <Link to='/'>Back</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
@@ -84,13 +94,15 @@ const CartScreen = ({ match, location, history }) => {
           </ListGroup>
         )}
       </Col>
+   
       <Col md={4}>
+     <Div>
         <Card>
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-              数量：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                個
+              Quantity：{cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                
               </h2>
               
             </ListGroup.Item>
@@ -101,16 +113,18 @@ const CartScreen = ({ match, location, history }) => {
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler}
               >
-                次へ
+                Next
               </Button>
             </ListGroup.Item>
           </ListGroup>
         </Card>
-      </Col>
+        </Div>
+      </Col>   
     </Row>
     <Link className ='btn btn-light my-3' to='/'>
-        戻る
+        Back
     </Link>
+    </Container>
     </>
   )
 }

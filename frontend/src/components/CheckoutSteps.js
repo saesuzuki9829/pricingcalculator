@@ -8,10 +8,10 @@ const CheckoutSteps = ({ setp1, step2, step3, step4, step5}) => {
             <Nav.Item>
             {setp1 ? (
                 <LinkContainer to='/'>
-                    <Nav.Link>1. O2センサー選択</Nav.Link>
+                    <Nav.Link>1. Select Products</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>1. CO2センサー選択</Nav.Link>
+                <Nav.Link disabled>1. Select Products</Nav.Link>
             )}
 
             </Nav.Item>
@@ -19,40 +19,40 @@ const CheckoutSteps = ({ setp1, step2, step3, step4, step5}) => {
             <Nav.Item>
             {step2 ? (
                 <LinkContainer to='/shipping'>
-                    <Nav.Link>2. お客様情報入力</Nav.Link>
+                    <Nav.Link>2. Enter Personal Infomation</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>2. お客様情報入力</Nav.Link>
+                <Nav.Link disabled>2. Enter Personal Infomation</Nav.Link>
             )}
 
             </Nav.Item>
             <Nav.Item>
             {step3 ? (
-                <LinkContainer to='/payment'>
-                    <Nav.Link>3. プライバシーポリシー</Nav.Link>
+                <LinkContainer to='/agree'>
+                    <Nav.Link>3. Privacy Policy</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>3. プライバシーポリシー</Nav.Link>
+                <Nav.Link disabled>3. Privacy Policy</Nav.Link>
             )}
 
             </Nav.Item>
             <Nav.Item>
             {step4 ? (
-                <LinkContainer to='/placeorder'>
-                    <Nav.Link>4. 確認</Nav.Link>
+                <LinkContainer to='/confirmation'>
+                    <Nav.Link>4. Confirmation</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>4. 確認</Nav.Link>
+                <Nav.Link disabled>4. Confirmation</Nav.Link>
             )}
 
             </Nav.Item>
             <Nav.Item>
             {step5  ? (
-                <LinkContainer to='/placeorder'>
-                    <Nav.Link>5. 概算お見積り</Nav.Link>
+                <LinkContainer to='/confirmation'>
+                    <Nav.Link>5. Result</Nav.Link>
                 </LinkContainer>
             ):(
-                <Nav.Link disabled>5. 概算お見積り</Nav.Link>
+                <Nav.Link disabled>5. Result</Nav.Link>
             )}
 
             </Nav.Item>

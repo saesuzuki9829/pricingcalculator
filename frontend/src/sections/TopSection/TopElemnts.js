@@ -1,5 +1,5 @@
 import styled, {keyframes} from "styled-components";
-import {MdCoronavirus} from 'react-icons/md'
+import {FaRegLightbulb} from 'react-icons/fa'
 
 const pulse = keyframes`
 0% {
@@ -90,7 +90,7 @@ font-size: 20px;
 text-align: center;
 margin-top:0;
 padding: 0.5rem 2rem;
-
+border-bottom: 2px solid #efb73e;
 @media (max-width: 425px){
     font-size: 15px;
     padding: 1rem 1rem;
@@ -100,6 +100,7 @@ padding: 0.5rem 2rem;
     padding: 1rem 1rem;
 }
 `
+
 
 export const TopH2 = styled.h1`
 color: #fff;
@@ -120,18 +121,7 @@ padding: 1rem 2rem;
 }
 `
 
-export const TopP1 = styled.p`
-color:#fff;
-font-size:15px;
-margin-bottom:0;
-border-bottom: 2px solid #efb73e;
-@media (max-width: 425px){
-    font-size: 12px;
-}
-@media (max-width: 339px){
-    font-size: 10px;
-}
-`
+
 
 export const TopP3 = styled.p`
 color:#fff;
@@ -161,7 +151,7 @@ max-width:600px;
 
 position: relative;
 background: #dee2e6;
-padding: 5px 5px 5px 15px;
+padding: 0px 5px 5px 15px;
 color: #000;
 border-radius: 0px 10px 10px 0px;
 }
@@ -172,9 +162,9 @@ border-radius: 0px 10px 10px 0px;
 
 `
 
-export const Covid =styled(MdCoronavirus)`
+export const Light =styled(FaRegLightbulb)`
 font-size:20px;
-color: #38b44a;
+color: #efb73e;;
     display: inline-block;
   line-height: 40px;
   position: absolute;

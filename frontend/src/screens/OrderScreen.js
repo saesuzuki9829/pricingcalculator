@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card, ProgressBar} from 'react-bootstrap'
+import { Button, Row, Col, ListGroup, Image, Card, ProgressBar, Container} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
 import CheckoutSteps  from '../components/CheckoutSteps'
+import Header from '../components/HeaderOther'
 
 const OrderScreen = ({history, match}) => {
 
@@ -32,9 +33,9 @@ const OrderScreen = ({history, match}) => {
             order.itemsQty = 
                 order.orderItems.reduce((acc, item) => acc +  item.qty,0)
             order.instlationFee=
-                order.itemsQty *5000
+                order.itemsQty *5
             }else
-        { history.push('/placeorder') }
+        { history.push('/confirmation') }
     }
 
     useEffect(() => {
@@ -45,23 +46,25 @@ const OrderScreen = ({history, match}) => {
    
 
     return loading ? <Loader /> : error ? 
-        <Message variant='danger'>
+    <>    <Header /> <Container>  <Message variant='danger'>
             {error}
-        </Message> : 
-        <> 
+        </Message>  </Container> </> : 
+        <>
+        <Header />
+        <Container> 
          <div style={{display: 'flex', justifyContent: 'center'}}>
     <CheckoutSteps step5 />
     </div>
     <ProgressBar now={100} />
-            <h1>概算お見積り</h1> 
+            <h1>Result</h1> 
             <Row>
                 <Col md={20}>
                     <ListGroup varioant='flush'>
                       
                         <ListGroup.Item>
-                            <h2>お見積り明細</h2>
+                            <h2>Details</h2>
                             {order.orderItems.length === 0 ? ( 
-                                <Message>商品が選択されていません </Message>
+                                <Message>No product is selected. </Message>
                             ):(
                                 <ListGroup variant='flush'>
                                 {order.orderItems.map((item, index) => (
@@ -83,12 +86,10 @@ const OrderScreen = ({history, match}) => {
                                             </Col>
 
                                             <Col md={4}>
-                                                {item.qty} 個 x {item.price} 円 = {item.qty * item.price} 円（税別）
+                                                {item.qty}  x £{item.price}  = £ {item.qty * item.price} 
                                             </Col>
                                         </Row>
-                                        <Row>
-                                        通信設定、センサーの登録、その他初期設定などキッティング作業を含む​
-                                        </Row>
+                                        
                                     </ListGroup.Item>
                                 ))}
                                             
@@ -103,21 +104,21 @@ const OrderScreen = ({history, match}) => {
                         
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>CO2センサー合計金額</Col>
-                                    <Col>{order.itemsPrice} 円（税別）</Col>
+                                    <Col>Total Price of Products</Col>
+                                    <Col>£{order.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>初期設定費用</Col>
-                                    <Col>{order.itemsQty} 個 × 5000 円 = {order.instlationFee} 円（税別）</Col>
+                                    <Col>Kitting Prices</Col>
+                                    <Col>{order.itemsQty} × £5 = £{order.instlationFee} </Col>
                                 </Row>
                             </ListGroup.Item>
                         
                             <ListGroup.Item>
                             <Row>
-                                <Col>合計</Col>
-                                <Col>{order.totalPrice} 円（税別）</Col>
+                                <Col>Total Price</Col>
+                                <Col>£{order.totalPrice}</Col>
                             </Row>
                             </ListGroup.Item>
                         </ListGroup>
@@ -125,28 +126,31 @@ const OrderScreen = ({history, match}) => {
 
                     <ListGroup.Item>
                       
-                      <h2>お客様情報</h2>
+                      <h2>Your Information</h2>
+                      <p> <strong>Title:</strong>
+                      {' '}
+                      {order.personalInfomation.title}
+                       
+                        </p>
                       <p>
-                        <strong>ご担当者様お名前:</strong>
+                        
+                        <strong>Name:</strong>
                         {' '}
                         {order.personalInfomation.name}
                       </p>
+                      
                       <p> <strong>Email:</strong>
                       {' '}
                       {order.personalInfomation.email}
                        
                         </p>
-                        <p> <strong>貴社名:</strong>
+                        <p> <strong>Company Name:</strong>
                       {' '}
                       {order.personalInfomation.company}
                        
                         </p>
-                        <p> <strong>所属部署名:</strong>
-                      {' '}
-                      {order.personalInfomation.title}
                        
-                        </p>
-                        <p> <strong>電話番号:</strong>
+                        <p> <strong>Phone Number:</strong>
                       {' '}
                       {order.personalInfomation.phoneNumber}
                        
@@ -160,7 +164,8 @@ const OrderScreen = ({history, match}) => {
 
              
             </Row>
-        </> 
+        </Container> 
+        </>
 }
 
 export default OrderScreen

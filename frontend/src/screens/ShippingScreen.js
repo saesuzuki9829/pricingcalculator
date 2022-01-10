@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Form, Button, ProgressBar } from 'react-bootstrap'
+import { Form, Button, ProgressBar,Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { savePersonalInformation } from '../actions/cartActions'
-
+import Header from '../components/HeaderOther'
 
 const ShippingScreen = ({ history }) => {
 
@@ -32,31 +32,55 @@ const ShippingScreen = ({ history }) => {
             e.stopPropagation();
           }else{
         dispatch(savePersonalInformation({name, email, company, title, phoneNumber}))
-        history.push('/payment')
+        history.push('/agree')
         }
     }
     return (
-
-        <>
+<>
+<Header />
+        <Container>
         <div style={{display: 'flex', justifyContent: 'center'}}>
         <CheckoutSteps step2/>
         </div>
         <ProgressBar now={50} />
         <FormContainer>
             <Form onSubmit = {submitHandler}>
-            <h1>会社情報入力</h1>
+            <h1>Personal Infomation</h1>
+
+           
 
             <Form.Group countrolId='name'>
                 <Form.Label>
-                        ご担当者様お名前
+                        Name
                 </Form.Label>
                 <Form.Control 
                         required
                         type ='text' 
-                        placeholder='お名前' 
+                        placeholder='Name' 
                         value={name} 
                         onChange={(e)=> setName(e.target.value)}>
                 </Form.Control>
+            </Form.Group>
+
+            <Form.Group countrolId='title'>
+                <Form.Label>
+                Title
+                </Form.Label>
+
+                <Form.Select 
+                        required
+                        type ='text' 
+                        placeholder='Title' 
+                        value={title} 
+                        onChange={(e)=> setTitle(e.target.value)}>
+                             <option>Select title</option>
+                             <option value="Ms">Ms</option>
+                             <option value="Mr">Mr</option>
+                           
+                             <option value="Mrs">Mrs</option>
+                             <option value="Miss">Miss</option>
+                             
+                </Form.Select>
             </Form.Group>
             <Form.Group countrolId='email'>
                 <Form.Label>
@@ -73,36 +97,25 @@ const ShippingScreen = ({ history }) => {
             </Form.Group>
             <Form.Group countrolId='company'>
                 <Form.Label>
-                貴社名
+                Company Name
                 </Form.Label>
                 <Form.Control 
                         required
                         type ='text' 
-                        placeholder='会社名' 
+                        placeholder='Company Name' 
                         value={company} 
                         onChange={(e)=> setCompany(e.target.value)}>
                 </Form.Control>
             </Form.Group>
-            <Form.Group countrolId='company'>
-                <Form.Label>
-                所属部署名
-                </Form.Label>
-                <Form.Control 
-                        required
-                        type ='text' 
-                        placeholder='部署名' 
-                        value={title} 
-                        onChange={(e)=> setTitle(e.target.value)}>
-                </Form.Control>
-            </Form.Group>
+            
             <Form.Group countrolId='email'>
                 <Form.Label>
-                電話番号
+                Phone Number
                 </Form.Label>
                 <Form.Control 
                         required
                         type ='text' 
-                        placeholder='電話番号' 
+                        placeholder='Phone Number' 
                         value={phoneNumber} 
                         onChange={(e)=> setPhoneNumber(e.target.value)}>
                 </Form.Control>
@@ -114,12 +127,13 @@ const ShippingScreen = ({ history }) => {
               <div className='mt-3'> 
 
                 <Button type='submit' varient='primary'>
-                    次へ
+                    Next
                 </Button>
                 </div> 
             </Form>
         </FormContainer>
 
+        </Container>
         </>
     )
 }

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Form, Button, Col, Alert, ProgressBar } from 'react-bootstrap'
+import { Form, Button, Col, Alert, ProgressBar, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer' 
 import CheckoutSteps  from '../components/CheckoutSteps' 
 import { savePaymentMethod } from '../actions/cartActions'
 import PrivacyPolicy from '../components/PrivacyPolicy'
+import Header from '../components/HeaderOther'
 
 const PaymentScreen = ({ history }) => {
 
@@ -16,26 +17,26 @@ const PaymentScreen = ({ history }) => {
     }
 
 
-    const [ paymentMethod, setPaymentMethod,  ] = useState('Paypal')
+    const [ paymentMethod, setPaymentMethod,  ] = useState('agreed')
 
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(savePaymentMethod(paymentMethod))
-        history.push('/placeorder')
+        history.push('/confirmation')
     }
 
     return (
-
-        <> 
+<> <Header />
+        <Container> 
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <CheckoutSteps step3 />
             </div>
             <ProgressBar now={60} />
         <FormContainer>
             
-            <h1>プライバシーポリシー</h1>
+            <h1>Privacy Policy</h1>
    
         
                
@@ -50,10 +51,10 @@ const PaymentScreen = ({ history }) => {
                     <Col>
                     <Form.Check 
                         type='radio' 
-                        label ='上記プライバシーポリシーに同意します' 
-                        id = 'PayPal'
+                        label ='I agree to the privacy policy' 
+                        id = 'agreed'
                         name='paymentMethod'
-                        value='PayPal' 
+                        value='agreed' 
                         checked 
                         onChange={(e) => setPaymentMethod(e.targe.value)}>
 
@@ -62,12 +63,13 @@ const PaymentScreen = ({ history }) => {
                     </Form.Group>
                     <div className='mt-3'> 
                 <Button type='submit' varient='primary'>
-                    次へ
+                    Next
                 </Button>
                 </div>
             </Form>
         </FormContainer>
 
+        </Container>
         </>
     )
 }

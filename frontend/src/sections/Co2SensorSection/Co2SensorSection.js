@@ -6,6 +6,7 @@ import Loader from '../../components/Loader'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../../actions/productActions'
+import {motion} from 'framer-motion'
 
 const Border =styled.div  `
   position: relative;
@@ -32,6 +33,10 @@ text-align: center;
 
 const Container = styled.div`
 padding: 2rem;
+`
+
+const ProductContainer = styled.div`
+padding: 1rem;
 `
 
 const H2 =styled.h1`
@@ -95,16 +100,16 @@ const Co2SensorSection = () => {
     }, [dispatch])
 
     return (
-      <section id="co2Sensor">
+      <section id="co2sensor">
        
              <div className="d-grid gap-2">
   <Border>
-<H1>Webで簡単！オンライン見積り</H1>
+<H1>Easy! Fast! </H1>
   </Border>
 </div>
 
 <Container>
-<H2>まずは、CO2センサーを選んでください！</H2></Container>
+<H2>Please select products.</H2></Container>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -113,7 +118,12 @@ const Co2SensorSection = () => {
                 <Row>
                 {products.map((product) => (
                   <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                        <ProductContainer> <motion.div
+               whileHover={{scale:1.1}}
+                
+                >
                     <Product product={product} />
+                    </motion.div> </ProductContainer>
                   </Col>
                 ))}
               </Row>

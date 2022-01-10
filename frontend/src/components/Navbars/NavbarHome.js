@@ -17,47 +17,31 @@ margin-left:1.5rem;
 
 `
 
-const Navbars = () => {
+const NavbarHome = () => {
     return (
         <>
             <Navbar sticky="top" bg="light" expand='lg' collapseOnSelect>
                 <Container>
                 <LinkContainer to='/'>
                 <Navbar.Brand>
-                        SensorCorpusIC 感染症対策
+                Pricing Calculator
                     </Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className='ms-auto'>
-                    <Scroll to="function" smooth={false}>
+                    <Scroll to="features" smooth={false}>
                     <Nav.Link className="ms-3">
-                           機能
+                           Features
                             </Nav.Link>
                         </Scroll>
-                        <Scroll to="example" smooth={false}>
-                    <Nav.Link className="ms-3">
-                           事例
+                        <LinkContainer to="/privacypolicy">
+                      
+                        <Nav.Link className="ms-3">
+                           Privacy Policy
                             </Nav.Link>
-                        </Scroll>
-                        <Scroll to="qanda" smooth={false}>
-                    <Nav.Link className="ms-3">
-                          Q&A
-                            </Nav.Link>
-                        </Scroll>
-                        <Scroll to="enquiry" smooth={false}>
-                    <Nav.Link className="ms-3">
-                           お問い合わせ
-                            </Nav.Link>
-                        </Scroll>
-                        <BtnContainer >
-                    
-                            <Scroll to="co2Sensor" smooth={false}>
                      
-                               <Button variant='warning' >オンライン見積</Button>
-                
-                            </Scroll> </BtnContainer>
-                            
+                            </LinkContainer>
                             </Nav>
                             
             </Navbar.Collapse>
@@ -67,4 +51,4 @@ const Navbars = () => {
     )
 }
 
-export default Navbars
+export default NavbarHome
