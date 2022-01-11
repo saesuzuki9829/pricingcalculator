@@ -1,7 +1,7 @@
 {
-  "name": "proshop",
+  "name": "pricingcalculator",
   "version": "1.0.0",
-  "description": "MERN shopping cart app",
+  "description": "MERN pricing calculator app",
   "main": "server.js",
   "type": "module",
   "scripts": {
